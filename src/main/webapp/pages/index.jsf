@@ -1,0 +1,8 @@
+<html>
+<f:view xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:outputText value="Hello, Kocko!" />
+</f:view>
+</html>
