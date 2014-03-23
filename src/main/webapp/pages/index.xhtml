@@ -2,12 +2,21 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-
 <h:head></h:head>
 <h:body>
+	<h:outputStylesheet name="../css/bootstrap-theme.min.css" />
+	<h:outputStylesheet name="../css/default.css" />
+	<h:outputScript library="js" name="../js/bootstrap.min.js" />
 	<h:form>
-		<p:spinner />
-		<h:outputText value="#{requestScope.helloBean.greeting}" />
+		<p:panel header="Enter your credentials">
+			<p:panelGrid columns="2">
+				<p:outputLabel for="username" value="Username" />
+				<p:inputText id="username" />
+				<p:outputLabel for="password" value="Password" />
+				<p:password id="password" feedback="true" />
+				<p:commandButton value="Sign in" styleClass="btn"/>
+			</p:panelGrid>
+		</p:panel>
 	</h:form>
 </h:body>
 </html>
