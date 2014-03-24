@@ -1,11 +1,34 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
-<body>
-	<ui:composition>
-		<h1>This is the default header</h1>
-	</ui:composition>
-</body>
-</html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:f="http://java.sun.com/jsf/core">
+	<h:panelGrid columns="3">
+		<p:graphicImage name="../images/jdev_logo.png" height="100" width="100"/>
+		<h:panelGrid columns="1">
+			<p:graphicImage name="../images/oracle_clear.png" height="34" width="148"/>
+			<h:panelGrid columns="2">
+				<p:spacer width="5" />
+				<h:outputText value="Developing web-applications with Oracle ADF"/>
+			</h:panelGrid>	
+		</h:panelGrid>
+		<h:form style="text-align: right;">
+			<p:commandButton value="Register" styleClass="ui-priority-primary"
+							 action="/pages/register/register.xhtml?faces-redirect=true" />
+			<p:commandButton value="Sign in" styleClass="ui-priority-primary"  />
+			<!-- p:dialog id="dialog" header="Login" widgetVar="dlg" resizable="false">
+				<h:panelGrid columns="2" cellpadding="5">
+					<h:outputLabel for="username" value="Username:" />
+					<p:inputText value="#{loginBean.username}" id="username" required="true" label="username" />
+		
+					<h:outputLabel for="password" value="Password:" />
+					<h:inputSecret value="#{loginBean.password}" id="password" required="true" label="password" />
+		
+					<f:facet name="footer">
+						<p:commandButton id="loginButton" value="Login" actionListener="#{loginBean.login}" />
+					</f:facet>
+				</h:panelGrid>
+			</p:dialog -->
+		</h:form>
+	</h:panelGrid>
+</ui:composition>

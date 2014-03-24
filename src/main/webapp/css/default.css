@@ -2,3 +2,25 @@
 	font-family: Arial, sans-serif;
 	font-size: 85% !important;
 }
+
+html,body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+.header {
+	height: 12.5%;
+	float: inherit;
+	background-color: #E7E7E7;
+}
+
+.content {
+	height: 75%;
+	background-color: #FFFFFF;
+}
+
+.footer {
+	height: 12.5%;
+	background-color: #E7E7E7;
+}
