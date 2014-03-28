@@ -13,22 +13,8 @@
 			</h:panelGrid>	
 		</h:panelGrid>
 		<h:form style="text-align: right;">
-			<p:commandButton value="Register" styleClass="ui-priority-primary"
-							 action="/pages/register/register.xhtml?faces-redirect=true" />
-			<p:commandButton value="Sign in" styleClass="ui-priority-primary"  />
-			<!-- p:dialog id="dialog" header="Login" widgetVar="dlg" resizable="false">
-				<h:panelGrid columns="2" cellpadding="5">
-					<h:outputLabel for="username" value="Username:" />
-					<p:inputText value="#{loginBean.username}" id="username" required="true" label="username" />
-		
-					<h:outputLabel for="password" value="Password:" />
-					<h:inputSecret value="#{loginBean.password}" id="password" required="true" label="password" />
-		
-					<f:facet name="footer">
-						<p:commandButton id="loginButton" value="Login" actionListener="#{loginBean.login}" />
-					</f:facet>
-				</h:panelGrid>
-			</p:dialog -->
+			<p:button value="Register" styleClass="ui-priority-primary" outcome="/pages/register/register" />
+			<p:button value="Sign in" styleClass="ui-priority-primary"  outcome="/pages/login"/>
 		</h:form>
 	</h:panelGrid>
 </ui:composition>
