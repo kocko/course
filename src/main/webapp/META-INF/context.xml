@@ -1,0 +1,8 @@
+<Context>
+	<Resource name="jdbc/adffmi" 
+			  auth="Container" type="javax.sql.DataSource"
+			  maxActive="50" maxIdle="30" maxWait="10000" 
+			  username="postgres" password="welkom01" 
+			  driverClassName="org.postgresql.Driver"
+			  url="jdbc:postgresql://localhost:5432/adffmi" />
+</Context>
