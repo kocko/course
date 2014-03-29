@@ -10,9 +10,9 @@ html,body {
 }
 
 .header {
-	height: 12.5%;
+	height: 110;
 	min-height: 110;
-	float: inherit;
+	/* float: inherit; */
 	background-color: #E7E7E7;
 }
 
