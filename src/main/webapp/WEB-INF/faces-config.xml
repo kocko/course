@@ -11,8 +11,5 @@
 			<base-name>i18n.messages</base-name>
 			<var>msg</var>
 		</resource-bundle>
-	</application>	
-	<lifecycle>
-		<phase-listener>eu.dreamix.jsfdemo.LifeCycleListener</phase-listener>
-	</lifecycle>
+	</application>
 </faces-config>

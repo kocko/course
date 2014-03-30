@@ -1,4 +1,4 @@
-package eu.dreamix.jsfdemo.db;
+package eu.dreamix.jsfdemo.db.model;
 
 import java.io.Serializable;
 

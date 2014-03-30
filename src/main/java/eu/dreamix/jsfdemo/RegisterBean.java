@@ -2,6 +2,10 @@ package eu.dreamix.jsfdemo;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.event.ActionEvent;
+
+import eu.dreamix.jsfdemo.util.JSFUtils;
+import eu.dreamix.jsfdemo.util.Mailer;
 
 /**
  * A request-scoped managed bean that holds the logic for registering a new
@@ -34,7 +38,8 @@ public class RegisterBean {
 		this.password = password;
 	}
 
-	public String register() {
-		return "/pages/register/success.xhtml?faces-redirect=true";
+	public void register(ActionEvent event) {
+	    Mailer mailer = JSFUtils.getBean("mailer", Mailer.class);
+		mailer.sendMail(email, "Welcome to ADF@FMI 2014!", "Success");
 	}
 }

@@ -3,7 +3,8 @@ package eu.dreamix.jsfdemo.db.util;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
-import eu.dreamix.jsfdemo.db.Users;
+import eu.dreamix.jsfdemo.db.model.Users;
+
 
 public class UsersDao {
 

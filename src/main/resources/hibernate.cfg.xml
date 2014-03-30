@@ -12,7 +12,10 @@
 		<property name="connection.url">jdbc:postgresql://localhost:5432/adffmi</property>
 		<property name="connection.username">postgres</property>
 		<property name="connection.password">welkom01</property>
-		
+
+
+		<property name="hibernate.current_session_context_class">org.hibernate.context.ThreadLocalSessionContext</property>
+				
 		<!-- SQL dialect -->
 		<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 
@@ -20,6 +23,6 @@
 		<property name="show_sql">true</property>
 
 
-		<mapping class="eu.dreamix.jsfdemo.db.Users" />
+		<mapping class="eu.dreamix.jsfdemo.db.model.Users" />
 	</session-factory>
 </hibernate-configuration>
