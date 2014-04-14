@@ -12,4 +12,7 @@
 			<var>msg</var>
 		</resource-bundle>
 	</application>
+	<lifecycle>
+		<phase-listener>eu.dreamix.jsfdemo.LifeCycleListener</phase-listener>
+	</lifecycle>
 </faces-config>

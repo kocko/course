@@ -28,8 +28,10 @@ public final class Mailer {
 			input = getClass().getResourceAsStream("/mail.properties");
 			properties.load(input);
 		} catch (FileNotFoundException e) {
+			//TODO handle the exception
 			e.printStackTrace();
 		} catch (IOException e) {
+			//TODO handle the exception
 			e.printStackTrace();
 		}
 	}
