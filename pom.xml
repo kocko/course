@@ -1,8 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>eu.dreamix.adffmi</groupId>
-	<artifactId>jsfdemo</artifactId>
+	<groupId>com.learnit</groupId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<properties>
@@ -24,6 +23,12 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.el</groupId>
+			<artifactId>el-api</artifactId>
+			<version>1.1</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.primefaces</groupId>
@@ -61,12 +66,6 @@
 			<artifactId>mail</artifactId>
 			<version>1.4</version>
 		</dependency>
-		<dependency>
-			<groupId>javax.el</groupId>
-			<artifactId>el-api</artifactId>
-			<version>1.1</version>
-			<scope>provided</scope>
-		</dependency>
 	</dependencies>
 	<repositories>
 		<repository>
@@ -77,7 +76,7 @@
 		</repository>
 	</repositories>
 	<build>
-		<finalName>jsfdemo</finalName>
+		<finalName>${project.artifactId}</finalName>
 		<directory>${project.basedir}/target</directory>
 		<plugins>
 			<plugin>
@@ -122,4 +121,10 @@
 			</plugin>
 		</plugins>
 	</build>
+	<organization>
+		<name>LearnIT</name>
+		<url>http://www.learnit.bg</url>
+	</organization>
+	<description>The internal course system for the LearnIT online academy.</description>
+	<artifactId>course</artifactId>
 </project>
