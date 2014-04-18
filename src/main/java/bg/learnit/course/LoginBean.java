@@ -3,6 +3,12 @@ package bg.learnit.course;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+/**
+ * 
+ * @author kocko
+ *
+ */
+
 @SessionScoped
 @ManagedBean(name = "loginBean")
 public class LoginBean {
