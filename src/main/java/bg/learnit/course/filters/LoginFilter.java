@@ -11,7 +11,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bg.learnit.course.LoginBean;
+import bg.learnit.course.beans.LoginBean;
 
 /**
  * Filter checks if LoginBean has loggedIn property set to true.

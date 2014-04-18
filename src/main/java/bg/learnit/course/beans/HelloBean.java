@@ -1,4 +1,4 @@
-package bg.learnit.course;
+package bg.learnit.course.beans;
 
 import javax.faces.bean.ManagedBean;
 
