@@ -11,6 +11,6 @@
 			<base-name>i18n.messages</base-name>
 			<var>msgs</var>
 		</resource-bundle>
-		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+		<!--  el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver> -->
 	</application>
 </faces-config>

@@ -8,33 +8,29 @@
 						http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd 
 						http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd">
 	
-	<context:component-scan base-package="bg.learnit" /> 
+	<context:component-scan base-package="bg.learnit" />
 	
-	<mongo:mongo host="54.198.124.25" port="10098" />
-	
-	<mongo:db-factory dbname="learnit" host="54.198.124.25" 
-					  port="10098" id="mongoDbFactory" 
-					  username="username" password="password"/>
+	<context:property-placeholder location="classpath:mail.properties, classpath:mongodb.properties" /> 
+		
+	<mongo:db-factory dbname="${mongodb.dbname}" host="${mongodb.host}" 
+					  port="${mongodb.port}" id="mongoDbFactory" 
+					  username="${mongodb.username}" password="${mongodb.password}"/>
 	
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
 		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
 	</bean>
 	
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gmail.com" />
-		<property name="port" value="587" />
-		<property name="username" value="username" />
-		<property name="password" value="password" />
+		<property name="host" value="${mail.smtp.host}" />
+		<property name="port" value="${mail.smtp.port}" />
+		<property name="username" value="${from.username}" />
+		<property name="password" value="${from.password}" />
 	 
 		<property name="javaMailProperties">
 		   <props>
-	       	      <prop key="mail.smtp.auth">true</prop>
-	       	      <prop key="mail.smtp.starttls.enable">true</prop>
+	       	      <prop key="mail.smtp.auth">${mail.smtp.auth}</prop>
+	       	      <prop key="mail.smtp.starttls.enable">${mail.smtp.starttls.enable}</prop>
 	       	   </props>
 		</property>
-	</bean>
-	 
-	<bean id="emailService" class="bg.learnit.course.service.EmailService">
-		<property name="mailSender" ref="mailSender" />
 	</bean>
 </beans>

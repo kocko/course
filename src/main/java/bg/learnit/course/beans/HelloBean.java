@@ -37,6 +37,6 @@ public class HelloBean {
 		
 		EmailService service = (EmailService) ctx.getBean("emailService");
 		
-		service.sendMail("user@example.com", "Test", "test");
+		service.sendMail("konstantin.yovkov@gmail.com", "Test", "test");
 	}
 }
