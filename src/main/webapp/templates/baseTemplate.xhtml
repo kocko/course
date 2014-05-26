@@ -2,32 +2,19 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<h:outputStylesheet name="../css/bootstrap-theme.min.css" />
-	<h:outputStylesheet name="../css/default.css" />
-</h:head>
-<h:body>
-	<div id="page">
-		<div id="header" class="header">
-			<ui:insert name="header">
-				<ui:include src="header.xhtml" />
-			</ui:insert>
-		</div>
-		<div id="content" class="content">
-			<h:panelGrid columns="1">
-				<ui:insert name="menu">
-					<ui:include src="/pages/menu.xhtml" />
-				</ui:insert>
-				<ui:insert name="content">
-					<ui:include src="main.xhtml" />
-				</ui:insert>
-			</h:panelGrid>
-		</div>
-		<div id="footer" class="footer">
-			<ui:insert name="footer">
-				<ui:include src="footer.xhtml" />
-			</ui:insert>
-		</div>
-	</div>
-</h:body>
+	<h:head>
+		<h:outputStylesheet name="bootstrap-theme.min.css" library="css"/>
+		<h:outputStylesheet name="default.css" library="css"/>
+	</h:head>
+	
+	<ui:include src="header.xhtml" />
+	
+	<ui:include src="/pages/menu.xhtml" />
+	
+	<h:body>
+		<ui:insert name="content" />
+	</h:body>
+	
+	<ui:insert name="footer.xhtml"/>
+
 </html>

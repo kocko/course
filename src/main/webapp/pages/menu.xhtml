@@ -2,14 +2,19 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-	<p:tabMenu activeIndex="0" >
-	    <p:menuitem value="Home" url="/faces/pages/index.xhtml" icon="ui-icon-star"/>
-	    <p:menuitem value="News" url="/faces/pages/news.xhtml" icon="ui-icon-search" />
-	    <p:menuitem value="Materials" url="/faces/pages/materials.xhtml" icon="ui-icon-document"/>
-	    <p:menuitem value="Tasks" url="/faces/pages/tasks.xhtml" icon="ui-icon-wrench"/>
-	    <p:menuitem value="Quizzes" url="/faces/pages/quizzes.xhtml" icon="ui-icon-person" disabled="true"/>
-	    <p:menuitem value="Forums" url="/faces/pages/forums.xhtml" icon="ui-icon-document"/>
-	    <p:menuitem value="Users" url="/faces/pages/users.xhtml" icon="ui-icon-wrench"/>
-	    <p:menuitem value="Team" url="/faces/pages/team.xhtml" icon="ui-icon-person" />
-	</p:tabMenu>
+	<!-- <p:link value="#{msgs['menu.home']}" outcome="/pages/index"/> -->
+	<h:panelGrid columns="3" columnClasses="sideMenuLeft, menu, sideMenuRight">
+		<p:spacer width="10"/>
+		<p:tabMenu activeIndex="0">
+		    <p:menuitem value="#{msgs['menu.home']}" url="/faces/pages/index.xhtml" icon="ui-icon-star"/>
+		    <p:menuitem value="#{msgs['menu.news']}" url="/faces/pages/news.xhtml" icon="ui-icon-search" />
+		    <p:menuitem value="#{msgs['menu.materials']}" url="/faces/pages/materials.xhtml" icon="ui-icon-document"/>
+		    <p:menuitem value="#{msgs['menu.tasks']}" url="/faces/pages/tasks.xhtml" icon="ui-icon-wrench"/>
+		    <p:menuitem value="#{msgs['menu.quizzes']}" url="/faces/pages/quizzes.xhtml" icon="ui-icon-person" disabled="true"/>
+		    <p:menuitem value="#{msgs['menu.forums']}" url="/faces/pages/forums.xhtml" icon="ui-icon-document"/>
+		    <p:menuitem value="#{msgs['menu.users']}" url="/faces/pages/users.xhtml" icon="ui-icon-wrench"/>
+		    <p:menuitem value="#{msgs['menu.team']}" url="/faces/pages/team.xhtml" icon="ui-icon-person" />
+		</p:tabMenu>
+		<p:spacer width="10"/>
+	</h:panelGrid>
 </f:view>

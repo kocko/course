@@ -10,10 +10,32 @@ html,body {
 }
 
 .header {
-	height: 110;
-	min-height: 110;
+	height: 70;
+	min-height: 70;
 	/* float: inherit; */
 	background-color: #E7E7E7;
+	width: 100%;
+}
+
+.headerFirstColumn {
+	padding-left: 20px;
+	width: 85%;
+}
+
+.headerSecondColumn {
+	float: right;
+}
+
+.sideMenuLeft {
+	padding-left: 20%;
+}
+
+.sideMenuRight {
+	padding-right: 20%;
+}
+
+.menu {
+	
 }
 
 .content {

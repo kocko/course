@@ -3,18 +3,12 @@
 	  xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:p="http://primefaces.org/ui"
 	  xmlns:f="http://java.sun.com/jsf/core">
-	<h:panelGrid columns="3">
-		<p:graphicImage name="../images/jdev_logo.png" height="100" width="100"/>
-		<h:panelGrid columns="1">
-			<p:graphicImage name="../images/oracle_clear.png" height="34" width="148"/>
-			<h:panelGrid columns="2">
-				<p:spacer width="5" />
-				<h:outputText value="Developing web-applications with Oracle ADF"/>
-			</h:panelGrid>	
-		</h:panelGrid>
-		<h:form style="text-align: right;">
+	<h:panelGrid columns="2" styleClass="header" columnClasses="headerFirstColumn, headerSecondColumn, headerSecondColumn">
+		<p:graphicImage library="images" name="learnit.png" height="70" width="155"/>
+		
+		<h:panelGrid columns="2">
 			<p:button value="Register" styleClass="ui-priority-primary" outcome="/pages/register/register" />
 			<p:button value="Sign in" styleClass="ui-priority-primary"  outcome="/pages/login"/>
-		</h:form>
+		</h:panelGrid>
 	</h:panelGrid>
 </ui:composition>
