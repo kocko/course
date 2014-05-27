@@ -9,10 +9,16 @@ public class User {
 	@Id
 	private String id;
 
-	String username;
+	private String email;
 
-	String password;
+	private String password;
 
+	public User(String username, String password) {
+		super();
+		this.email = username;
+		this.password = password;
+	}
+	
 	public String getId() {
 		return id;
 	}
@@ -22,11 +28,11 @@ public class User {
 	}
 
 	public String getUsername() {
-		return username;
+		return email;
 	}
 
 	public void setUsername(String username) {
-		this.username = username;
+		this.email = username;
 	}
 
 	public String getPassword() {
@@ -37,16 +43,9 @@ public class User {
 		this.password = password;
 	}
 
-	public User(String username, String password) {
-		super();
-		this.username = username;
-		this.password = password;
-	}
-
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password="
-				+ password + "]";
+		return "User [id=" + id + ", email=" + email + ", password=" + password + "]";
 	}
 
 }

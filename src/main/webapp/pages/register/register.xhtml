@@ -25,9 +25,7 @@
 									 widgetVar="registerButton" 
 									 onclick="registerButton.disable()"
 									 oncomplete="registerButton.enable()"
-									 actionListener="#{registerBean.register}"
-									 action="success.xhtml?faces-redirect=true"
-									 update="matchPasswords" />
+									 action="#{registerBean.register()}" />
 				</h:panelGrid>
 			</p:panel>
 		</h:form>
