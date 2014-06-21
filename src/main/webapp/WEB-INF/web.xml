@@ -9,28 +9,32 @@
             /WEB-INF/spring-config.xml
         </param-value>
     </context-param>
+    
+    <filter>
+        <filter-name>loginFilter</filter-name>
+        <filter-class>bg.learnit.course.filters.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>loginFilter</filter-name>
+        <url-pattern>/pages/home/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>/faces/*</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>*.faces</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>*.xhtml</url-pattern>
+		<url-pattern>*.jsf</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
-		<welcome-file>faces/pages/index.xhtml</welcome-file>
+		<welcome-file>pages/home/index.jsf</welcome-file>
 	</welcome-file-list>
 	<error-page>
 		<error-code>404</error-code>
-		<location>/pages/error.xhtml</location>
+		<location>/pages/error.jsf</location>
 	</error-page>
 	<context-param>
 		<param-name>primefaces.THEME</param-name>

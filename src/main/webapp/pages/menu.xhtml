@@ -3,7 +3,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 	<!-- <p:link value="#{msgs['menu.home']}" outcome="/pages/index"/> -->
-	<h:panelGrid columns="3" columnClasses="sideMenuLeft, menu, sideMenuRight">
+	<h:panelGrid columns="3" columnClasses="sideMenuLeft, menu, sideMenuRight" rendered="#{loginBean.loggedIn}">
 		<p:spacer width="10"/>
 		<p:tabMenu activeIndex="0">
 		    <p:menuitem value="#{msgs['menu.home']}" url="/faces/pages/index.xhtml" icon="ui-icon-star"/>

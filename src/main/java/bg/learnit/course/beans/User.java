@@ -13,9 +13,9 @@ public class User {
 
 	private String password;
 
-	public User(String username, String password) {
+	public User(String email, String password) {
 		super();
-		this.email = username;
+		this.email = email;
 		this.password = password;
 	}
 	
@@ -27,12 +27,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getUsername() {
+	public String getEmail() {
 		return email;
 	}
 
-	public void setUsername(String username) {
-		this.email = username;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {

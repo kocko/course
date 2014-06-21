@@ -20,24 +20,22 @@ import bg.learnit.course.beans.LoginBean;
  * @author kocko
  *
  */
+
 public class LoginFilter implements Filter {
 
 	/**
 	 * Checks if user is logged in. If not it redirects to the login.xhtml page.
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		// Get the loginBean from session attribute
 		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 		LoginBean loginBean = (LoginBean) (httpServletRequest.getSession().getAttribute("loginBean"));
-		
-		// For the first application request there is no loginBean in the session so user needs to log in
-		// For other requests loginBean is present but we need to check if user has logged in successfully
-		if (loginBean == null || !loginBean.isLoggedIn()) {
+
+		if (loginBean != null && loginBean.isLoggedIn()) {
+			chain.doFilter(request, response);
+		} else {
 			HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 			String contextPath = httpServletRequest.getContextPath();
-			httpServletResponse.sendRedirect(contextPath + "/faces/pages/login.xhtml");
-		} else {
-			chain.doFilter(request, response);
+			httpServletResponse.sendRedirect(contextPath + "/pages/login.jsf");
 		}
 			
 	}

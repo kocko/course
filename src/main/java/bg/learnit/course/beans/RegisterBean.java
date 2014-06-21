@@ -1,15 +1,12 @@
 package bg.learnit.course.beans;
 
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
 import bg.learnit.course.service.EmailService;
 import bg.learnit.course.service.UsersService;
+import bg.learnit.course.util.SecurityUtils;
 
 
 /**
@@ -58,23 +55,12 @@ public class RegisterBean {
 	}
 
 	public String register() {
-		byte[] passwordAsBytes = null;
-		byte[] encryptedPassword = null;
-		try {
-			MessageDigest md5 = MessageDigest.getInstance("MD5");
-			passwordAsBytes = password.getBytes("UTF-8");
-			encryptedPassword = md5.digest(passwordAsBytes);
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		String encryptedPassword = SecurityUtils.encryptToMD5(password);
 		if (encryptedPassword != null) {
 			usersService.saveUser(email, new String(encryptedPassword));
 			emailService.sendMail(email, "Welcome to LearnIT!", "Welcome to LearnIT!");
+		} else {
+			//TODO
 		}
 		return "success";
 	}

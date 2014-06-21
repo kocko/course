@@ -7,8 +7,14 @@
 		<p:graphicImage library="images" name="learnit.png" height="70" width="155"/>
 		
 		<h:panelGrid columns="2">
-			<p:button value="Register" styleClass="ui-priority-primary" outcome="/pages/register/register" />
-			<p:button value="Sign in" styleClass="ui-priority-primary"  outcome="/pages/login"/>
+			<p:button value="Register" styleClass="ui-priority-primary" outcome="/pages/register/register" rendered="#{not loginBean.loggedIn}"/>
+			<p:button value="Sign in" styleClass="ui-priority-primary"  outcome="/pages/login" rendered="#{not loginBean.loggedIn}"/>
+			<h:outputText value="Здравейте, #{loginBean.email}!" rendered="#{loginBean.loggedIn}"/>
+			<h:form>
+				<p:commandButton value="Sign out" styleClass="ui-priority-primary"
+								 action="#{loginBean.logout()}" rendered="#{loginBean.loggedIn}" 
+								 immediate="true"/>
+			</h:form>
 		</h:panelGrid>
 	</h:panelGrid>
 </ui:composition>

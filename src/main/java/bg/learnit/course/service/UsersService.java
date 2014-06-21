@@ -2,9 +2,12 @@ package bg.learnit.course.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import bg.learnit.course.beans.User;
+import bg.learnit.course.util.SecurityUtils;
 
 @Service("usersService")
 public class UsersService {
@@ -15,5 +18,13 @@ public class UsersService {
 	public void saveUser(String username, String password) {
 		User user = new User(username, password);
 		mongoTemplate.save(user);
+	}
+	
+	public User findUser(String email, String password) {
+		String encryptedPassword = SecurityUtils.encryptToMD5(password);
+		Query query = new Query();
+		query.addCriteria(Criteria.where("email").is(email).and("password").is(encryptedPassword));
+		User result = mongoTemplate.findOne(query, User.class);
+		return result;
 	}
 }
