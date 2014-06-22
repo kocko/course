@@ -13,14 +13,13 @@ public class User {
 	
 	private String fullname;
 	
+	private String place;
+	
 	private byte[] picture;
 
-	public User(String email, String password, String fullname, byte[] picture) {
-		super();
+	public User(String email, String password) {
 		this.email = email;
 		this.password = password;
-		this.fullname = fullname;
-		this.picture = picture;
 	}
 
 	public String getEmail() {
@@ -47,6 +46,14 @@ public class User {
 		this.fullname = fullname;
 	}
 	
+	public String getPlace() {
+		return place;
+	}
+	
+	public void setPlace(String place) {
+		this.place = place;
+	}
+	
 	public byte[] getPicture() {
 		return picture;
 	}
@@ -54,10 +61,4 @@ public class User {
 	public void setPicture(byte[] picture) {
 		this.picture = picture;
 	}
-
-	@Override
-	public String toString() {
-		return "User [email=" + email + ", password=" + password + "]";
-	}
-
 }

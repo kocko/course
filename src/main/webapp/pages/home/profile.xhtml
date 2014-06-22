@@ -6,29 +6,38 @@
 	<ui:define name="content">
 		<h:form enctype="multipart/form-data">
 			<p:panel header="#{msgs['profile.title']}">
-				<h:panelGrid>
-					<p:messages id="messages" showDetail="true" autoUpdate="true" />
-					<h:panelGrid id="matchPasswords" columns="2">
-						<p:outputLabel for="picture" value="#{msgs['profile.avatar']}" rendered="#{empty loginBean.loggedInUser.picture}"/>
-						<h:inputFile id="picture" value="#{profileBean.picture}" rendered="#{empty loginBean.loggedInUser.picture}"/>
-						
-						<p:spacer width="1" rendered="#{not empty loginBean.loggedInUser.picture}"/>
-						<p:graphicImage value="#{profileBean.pictureStream}" width="100" height="100" 
+				<p:messages id="messages" showDetail="true" autoUpdate="true" />
+				<p:panelGrid columns="2">
+					<f:facet name="header">
+				        <p:graphicImage value="#{profileBean.pictureStream}" width="100" height="100" 
 										rendered="#{not empty loginBean.loggedInUser.picture}" cache="false"/>
-						
-						<p:outputLabel for="email" value="#{msgs['profile.email']}" />
-						<h:outputText id="email" value="#{loginBean.loggedInUser.email}" />
-								
-						<p:outputLabel for="fullname" value="#{msgs['profile.fullname']}"/>
-						<p:inputText id="fullname" value="#{loginBean.loggedInUser.fullname}"/>
-					</h:panelGrid>
-					<p:commandButton value="#{msgs['profile.save']}" 
-									 styleClass="ui-priority-primary"
-									 widgetVar="saveButton" ajax="false"
-									 onclick="saveButton.disable()"
-									 oncomplete="saveButton.enable()"
-									 action="#{profileBean.updateProfile()}" />
-				</h:panelGrid>
+				    </f:facet>
+				    
+				    <p:row rendered="#{empty loginBean.loggedInUser.picture}">
+				    	<p:column><p:outputLabel for="picture" value="#{msgs['profile.avatar']}" /></p:column>
+				    	<p:column><h:inputFile id="picture" value="#{profileBean.picture}" /></p:column>
+				    </p:row>
+				    
+					<p:outputLabel for="email" value="#{msgs['profile.email']}" />
+					<h:outputText id="email" value="#{loginBean.loggedInUser.email}" />
+							
+					<p:outputLabel for="fullname" value="#{msgs['profile.fullname']}"/>
+					<p:inputText id="fullname" value="#{loginBean.loggedInUser.fullname}"/>
+					
+					<p:outputLabel for="place" value="#{msgs['profile.place']}"/>
+					<p:inputText id="place" value="#{loginBean.loggedInUser.place}"/>
+					
+					<p:row>
+						<p:column colspan="2">
+							<p:commandButton value="#{msgs['profile.save']}" 
+										 styleClass="ui-priority-primary"
+										 widgetVar="saveButton" ajax="false"
+										 onclick="saveButton.disable()"
+										 oncomplete="saveButton.enable()"
+										 action="#{profileBean.updateProfile()}" />
+						</p:column>
+					</p:row>
+				</p:panelGrid>
 			</p:panel>
 		</h:form>
 	</ui:define>

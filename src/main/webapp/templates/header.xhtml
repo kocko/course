@@ -9,7 +9,7 @@
 		<h:panelGrid columns="2">
 			<h:form rendered="#{loginBean.loggedIn}" >
 				<h:panelGrid columns="4">
-					<h:outputText value="Здравейте, "/>
+					<h:outputText value="Здравейте, " style="font-size: 85% !important;"/>
 					<p:link outcome="/pages/home/profile" value="#{(not empty loginBean.loggedInUser.fullname) ? loginBean.loggedInUser.fullname : loginBean.loggedInUser.email}"/>
 					<h:outputText value="!"/>
 					<p:commandButton value="Sign out" styleClass="ui-priority-primary"

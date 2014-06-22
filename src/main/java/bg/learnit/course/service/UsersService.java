@@ -16,7 +16,7 @@ public class UsersService {
 	private MongoOperations mongoTemplate;
 	
 	public void saveUser(String username, String password) {
-		User user = new User(username, password, null, null);
+		User user = new User(username, password);
 		mongoTemplate.insert(user);
 	}
 	

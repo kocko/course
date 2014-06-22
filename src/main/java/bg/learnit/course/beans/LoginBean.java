@@ -5,7 +5,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
 
 import bg.learnit.course.db.model.User;
 import bg.learnit.course.service.UsersService;
@@ -78,8 +77,7 @@ public class LoginBean {
 	
 	public String logout() {
 		loggedInUser = null;
-		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-		request.getSession().invalidate();
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();;
 		return "/pages/login.jsf?faces-redirect=true";
 	}
 }
