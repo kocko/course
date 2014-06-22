@@ -1,4 +1,4 @@
-package bg.learnit.course.beans;
+package bg.learnit.course.db.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

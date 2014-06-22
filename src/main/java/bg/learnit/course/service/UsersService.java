@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
-import bg.learnit.course.beans.User;
+import bg.learnit.course.db.model.User;
 import bg.learnit.course.util.SecurityUtils;
 
 @Service("usersService")

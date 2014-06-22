@@ -14,6 +14,8 @@ import org.apache.commons.io.IOUtils;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
+import bg.learnit.course.db.model.User;
+
 @RequestScoped
 @ManagedBean(name = "profileBean")
 public class ProfileBean {

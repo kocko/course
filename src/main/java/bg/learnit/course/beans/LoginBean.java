@@ -7,6 +7,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
+import bg.learnit.course.db.model.User;
 import bg.learnit.course.service.UsersService;
 
 /**

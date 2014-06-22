@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
+import bg.learnit.course.db.model.User;
 import bg.learnit.course.service.EmailService;
 
 @ManagedBean(name = "helloBean")
@@ -18,6 +19,7 @@ public class HelloBean {
 	}
 
 	public static void main(String[] args) {
+		@SuppressWarnings("resource")
 		ApplicationContext ctx = new GenericXmlApplicationContext("spring-config.xml");
 		MongoOperations mongoOperation = (MongoOperations) ctx.getBean("mongoTemplate");
 
@@ -38,5 +40,6 @@ public class HelloBean {
 		EmailService service = (EmailService) ctx.getBean("emailService");
 		
 		service.sendMail("konstantin.yovkov@gmail.com", "Test", "test");
+		
 	}
 }
