@@ -30,7 +30,7 @@ public class LoginFilter implements Filter {
 		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 		LoginBean loginBean = (LoginBean) (httpServletRequest.getSession().getAttribute("loginBean"));
 
-		if (loginBean != null && loginBean.isLoggedIn()) {
+		if (loginBean != null && loginBean.getLoggedInUser() != null) {
 			chain.doFilter(request, response);
 		} else {
 			HttpServletResponse httpServletResponse = (HttpServletResponse) response;

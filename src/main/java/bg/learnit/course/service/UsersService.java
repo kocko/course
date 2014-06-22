@@ -16,8 +16,8 @@ public class UsersService {
 	private MongoOperations mongoTemplate;
 	
 	public void saveUser(String username, String password) {
-		User user = new User(username, password);
-		mongoTemplate.save(user);
+		User user = new User(username, password, null, null);
+		mongoTemplate.insert(user);
 	}
 	
 	public User findUser(String email, String password) {
@@ -26,5 +26,9 @@ public class UsersService {
 		query.addCriteria(Criteria.where("email").is(email).and("password").is(encryptedPassword));
 		User result = mongoTemplate.findOne(query, User.class);
 		return result;
+	}
+	
+	public void updateUser(User user) {
+		mongoTemplate.save(user);
 	}
 }

@@ -3,17 +3,17 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 	<h:head>
-		<h:outputStylesheet name="bootstrap-theme.min.css" library="css"/>
+		<h:outputStylesheet name="bootstrap/bootstrap.css" library="css"/>
 		<h:outputStylesheet name="default.css" library="css"/>
+		<h:outputScript name="bootstrap/bootstrap.js" library="js"/>
 	</h:head>
 	
 	<ui:include src="header.xhtml" />
 	
-	<ui:include src="/pages/menu.xhtml" />
-	
-	<h:body>
+	<div style="padding-left: 100px; padding-right: 100px;">
+		<ui:include src="/pages/menu.xhtml" />
 		<ui:insert name="content" />
-	</h:body>
+	</div>
 	
 	<ui:insert name="footer.xhtml"/>
 

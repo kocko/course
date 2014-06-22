@@ -7,6 +7,14 @@ html,body {
 	margin: 0;
 	padding: 0;
 	height: 100%;
+	font-family: Arial, sans-serif;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+
+th {
+  padding: 0;
+  height: 15;
 }
 
 .header {
@@ -18,29 +26,29 @@ html,body {
 }
 
 .headerFirstColumn {
-	padding-left: 20px;
-	width: 85%;
+	padding-left: 100px;
+	width: auto;
 }
 
 .headerSecondColumn {
-	float: right;
-}
-
-.sideMenuLeft {
-	padding-left: 20%;
-}
-
-.sideMenuRight {
-	padding-right: 20%;
+	width: 40%;
+	padding-right: 0px;
 }
 
 .menu {
-	
+	width: 80%;
+	margin: 0 auto;
+}
+
+.menu {
+  padding: 0;
+  height: 60;
 }
 
 .content {
 	height: 75%;
 	background-color: #FFFFFF;
+	padding-left: 100px;
 }
 
 .footer {

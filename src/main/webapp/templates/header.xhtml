@@ -3,18 +3,22 @@
 	  xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:p="http://primefaces.org/ui"
 	  xmlns:f="http://java.sun.com/jsf/core">
-	<h:panelGrid columns="2" styleClass="header" columnClasses="headerFirstColumn, headerSecondColumn, headerSecondColumn">
+	<h:panelGrid columns="2" styleClass="header" columnClasses="headerFirstColumn, headerSecondColumn">
 		<p:graphicImage library="images" name="learnit.png" height="70" width="155"/>
 		
 		<h:panelGrid columns="2">
+			<h:form rendered="#{loginBean.loggedIn}" >
+				<h:panelGrid columns="4">
+					<h:outputText value="Здравейте, "/>
+					<p:link outcome="/pages/home/profile" value="#{(not empty loginBean.loggedInUser.fullname) ? loginBean.loggedInUser.fullname : loginBean.loggedInUser.email}"/>
+					<h:outputText value="!"/>
+					<p:commandButton value="Sign out" styleClass="ui-priority-primary"
+									 action="#{loginBean.logout()}" 
+									 immediate="true"/>
+				</h:panelGrid>
+			</h:form>
 			<p:button value="Register" styleClass="ui-priority-primary" outcome="/pages/register/register" rendered="#{not loginBean.loggedIn}"/>
 			<p:button value="Sign in" styleClass="ui-priority-primary"  outcome="/pages/login" rendered="#{not loginBean.loggedIn}"/>
-			<h:outputText value="Здравейте, #{loginBean.email}!" rendered="#{loginBean.loggedIn}"/>
-			<h:form>
-				<p:commandButton value="Sign out" styleClass="ui-priority-primary"
-								 action="#{loginBean.logout()}" rendered="#{loginBean.loggedIn}" 
-								 immediate="true"/>
-			</h:form>
 		</h:panelGrid>
 	</h:panelGrid>
 </ui:composition>

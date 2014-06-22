@@ -23,7 +23,7 @@ public class LoginBean {
 
 	private String password;
 	
-	private boolean loggedIn;
+	private User loggedInUser;
 	
 	@ManagedProperty(name = "usersService", value = "#{usersService}")
 	private UsersService usersService;
@@ -43,13 +43,13 @@ public class LoginBean {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public boolean isLoggedIn() {
-		return loggedIn;
+	
+	public User getLoggedInUser() {
+		return loggedInUser;
 	}
 	
-	public void setLoggedIn(boolean loggedIn) {
-		this.loggedIn = loggedIn;
+	public void setLoggedInUser(User loggedInUser) {
+		this.loggedInUser = loggedInUser;
 	}
 	
 	public UsersService getUsersService() {
@@ -60,20 +60,23 @@ public class LoginBean {
 		this.usersService = usersService;
 	}
 	
+	public boolean isLoggedIn() {
+		return loggedInUser != null;
+	}
+	
 	public String login() {
-		User user = usersService.findUser(email, password);
-		if (user != null) {
-			loggedIn = Boolean.TRUE;
-		} else {
+		loggedInUser = usersService.findUser(email, password);
+		if (loggedInUser == null) {
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid login credentials!");
 			FacesContext.getCurrentInstance().addMessage(null, message);
 			return null;
 		}
+		password = null;
 		return "/pages/home/index.jsf?faces-redirect=true";
 	}
 	
 	public String logout() {
-		loggedIn = Boolean.FALSE;
+		loggedInUser = null;
 		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		request.getSession().invalidate();
 		return "/pages/login.jsf?faces-redirect=true";
