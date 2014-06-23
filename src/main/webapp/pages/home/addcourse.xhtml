@@ -1,0 +1,38 @@
+<ui:composition xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/baseTemplate.xhtml">
+	<ui:define name="content">
+		<h:form enctype="multipart/form-data">
+			<p:panel header="Add new course">
+				    <h:panelGrid columns="2">
+				    	<p:outputLabel for="picture" value="Picture"/>
+				    	<h:inputFile id="picture" value="#{courseBean.picture}" />
+				    
+				    	<p:outputLabel for="name" value="Name"/>
+				    	<p:inputText id="name" placeholder="Java" value="#{courseBean.name}"/>
+				    	
+				    	<p:outputLabel for="start" value="Start date"/>
+				    	<p:calendar id="start" pattern="dd/MM/yyyy" value="#{courseBean.startDate}"/>
+				    	
+				    	<p:outputLabel for="end" value="End date"/>
+				    	<p:calendar id="end" pattern="dd/MM/yyyy" value="#{courseBean.endDate}"/>
+				    	
+				    	<p:outputLabel for="tags" value="Tags" />
+				    	<p:inputText id="tags" placeholder="java, php, mysql" value="#{courseBean.tags}"/>
+				    	
+				    	<p:row>
+				    		<p:column colspan="2">
+				    			<p:commandButton value="Save" action="#{courseBean.save()}"
+				    							 styleClass="ui-priority-primary"
+												 widgetVar="saveButton" ajax="false"
+												 onclick="saveButton.disable()"
+												 oncomplete="saveButton.enable()"/>
+				    		</p:column>
+				    	</p:row>
+				    </h:panelGrid>
+			</p:panel>   
+		</h:form>
+	</ui:define>
+</ui:composition>

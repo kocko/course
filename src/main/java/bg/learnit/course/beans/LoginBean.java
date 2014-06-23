@@ -77,6 +77,7 @@ public class LoginBean {
 	
 	public String logout() {
 		loggedInUser = null;
+		email = null;
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();;
 		return "/pages/login.jsf?faces-redirect=true";
 	}

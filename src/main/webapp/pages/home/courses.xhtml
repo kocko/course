@@ -1,0 +1,22 @@
+<ui:composition xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/baseTemplate.xhtml">
+	<ui:define name="content">
+		<p:button value="Add new course"
+				  outcome="/pages/home/addcourse"
+				  styleClass="ui-priority-primary" />
+				  
+		<p:panel header="Current courses">
+			<p:graphicImage value="#{courseBean.course.picture}" cache="false" width="100" height="100" />
+		</p:panel> 
+		
+		<!--
+		
+		<ui:repeat var="course" value="#{courseBean.courses}">
+			
+		</ui:repeat>
+		 -->
+	</ui:define>
+</ui:composition>

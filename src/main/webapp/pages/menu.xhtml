@@ -2,9 +2,10 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-	<h:panelGrid columns="8" rendered="#{loginBean.loggedIn}" styleClass="menu">
+	<h:panelGrid columns="9" rendered="#{loginBean.loggedIn}" styleClass="menu">
 		<p:link value="#{msgs['menu.home']}" outcome="/pages/home/index.jsf" />
 		<p:link value="#{msgs['menu.news']}" outcome="/pages/home/index.jsf" />
+		<p:link value="#{msgs['menu.courses']}" outcome="/pages/home/courses.jsf" />
 		<p:link value="#{msgs['menu.materials']}" outcome="/pages/home/index.jsf" />
 		<p:link value="#{msgs['menu.tasks']}" outcome="/pages/home/index.jsf" />
 		<p:link value="#{msgs['menu.quizzes']}" outcome="/pages/home/index.jsf" />
