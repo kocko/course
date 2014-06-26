@@ -2,12 +2,17 @@
 	font-family: Arial, sans-serif;
 	font-size: 85% !important;
 }
+.ui-outputlabel {
+	font-size: 85% !important;
+}
 
 html,body {
 	margin: 0;
 	padding: 0;
 	height: 100%;
 	font-family: Arial, sans-serif;
+	font-size: 85% !important;
+	color: #828c8f !important;
 	-webkit-text-size-adjust: 100%;
 	-ms-text-size-adjust: 100%;
 }
@@ -57,6 +62,7 @@ label {
 
 .footer {
 	width: 100%;
+	margin-top:-32767px;
 	height: 70;
 	min-height: 70;
 	position: absolute;

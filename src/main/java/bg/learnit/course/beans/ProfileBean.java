@@ -48,7 +48,6 @@ public class ProfileBean {
             return new DefaultStreamedContent();
         }
         else {
-            // So, browser is requesting the image. Return a real StreamedContent with the image bytes.
         	User loggedInUser = loginBean.getLoggedInUser();
             return new DefaultStreamedContent(new ByteArrayInputStream(loggedInUser.getPicture()));
         }

@@ -9,14 +9,27 @@
 				  styleClass="ui-priority-primary" />
 				  
 		<p:panel header="Current courses">
-			<p:graphicImage value="#{courseBean.course.picture}" cache="false" width="100" height="100" />
-		</p:panel> 
-		
-		<!--
-		
-		<ui:repeat var="course" value="#{courseBean.courses}">
-			
-		</ui:repeat>
-		 -->
+			<ui:repeat var="course" value="#{courseBean.courses}">
+				<h:panelGrid columns="2">
+					<p:graphicImage value="#{courseBean.coursePicture}" 
+									cache="false" width="200" height="140" >
+						<f:param name="courseName" value="#{course.name}"/>
+					</p:graphicImage>
+					<h:panelGrid columns="2">
+						<p:outputLabel value="Start Date" for="startDate"/>
+						<h:outputText value="#{course.start}" id="startDate">
+							<f:convertDateTime dateStyle="medium" />
+						</h:outputText>
+					
+						<p:outputLabel value="End Date" for="endDate"/>
+						<h:outputText value="#{course.end}" id="endDate"/>
+						
+						<p:outputLabel value="Tags" for="tags"/>
+						<h:outputText value="#{course.tags}" id="tags"/>
+					</h:panelGrid>
+				</h:panelGrid>
+				<p:separator />
+			</ui:repeat>
+		</p:panel>
 	</ui:define>
 </ui:composition>

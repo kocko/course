@@ -1,5 +1,6 @@
 package bg.learnit.course.db.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -7,7 +8,12 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="courses")
-public class Course {
+public class Course implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8344691508818821755L;
 
 	@Id
 	private String name;
