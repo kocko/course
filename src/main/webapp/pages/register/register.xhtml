@@ -6,26 +6,31 @@
 	template="/templates/baseTemplate.xhtml">
 	<ui:define name="content">
 		<h:form>
-			<p:panel header="Register">
-				<h:panelGrid>
-					<p:messages id="messages" showDetail="true" autoUpdate="true" />
-					<h:panelGrid id="matchPasswords" columns="2">
-						<p:outputLabel for="email" value="Email" />
-						<p:inputText id="email" value="#{registerBean.email}" />
-						
-						<p:outputLabel for="pwd1" value="Password" />
-						<p:password id="pwd1" value="#{registerBean.password}"
-									match="pwd2" required="true" label="Password" />
-						
-						<p:outputLabel for="pwd2" value="Password (re-type)" />
-						<p:password id="pwd2" value="#{registerBean.password}"
-									required="true" label="Password (re-type)" />
-					</h:panelGrid>
-					<p:commandButton value="Register" styleClass="ui-priority-primary"
-									 widgetVar="registerButton" 
-									 onclick="registerButton.disable()"
-									 oncomplete="registerButton.enable()"
-									 action="#{registerBean.register()}" />
+			<p:panel header="Register" styleClass="registerForm">
+				<p:growl showSummary="true" showDetail="true"/>
+				<h:panelGrid columns="2">
+					<h:column>
+						<p:graphicImage library="images" name="sign-up-icon.png" height="128" width="128"/>
+					</h:column>
+					<h:column>
+						<h:panelGrid id="matchPasswords" columns="2">
+							<p:outputLabel for="email" value="Email" />
+							<p:inputText id="email" value="#{registerBean.email}" />
+							
+							<p:outputLabel for="pwd1" value="Password" />
+							<p:password id="pwd1" value="#{registerBean.password}"
+										match="pwd2" required="true" label="Password" />
+							
+							<p:outputLabel for="pwd2" value="Password (re-type)" />
+							<p:password id="pwd2" value="#{registerBean.password}"
+										required="true" label="Password (re-type)" />
+						</h:panelGrid>
+						<p:commandButton value="Register" styleClass="ui-priority-primary"
+										 widgetVar="registerButton" 
+										 onclick="registerButton.disable()"
+										 oncomplete="registerButton.enable()"
+										 action="#{registerBean.register()}" />
+					</h:column>
 				</h:panelGrid>
 			</p:panel>
 		</h:form>

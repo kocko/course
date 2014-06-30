@@ -1,5 +1,7 @@
 package bg.learnit.course.beans;
 
+import java.util.ResourceBundle;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -67,7 +69,8 @@ public class LoginBean {
 	public String login() {
 		loggedInUser = usersService.findUser(email, password);
 		if (loggedInUser == null) {
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid login credentials!");
+			ResourceBundle bundle = ResourceBundle.getBundle("i18n.messages", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, bundle.getString("login.error"), bundle.getString("login.invalidcredentials"));
 			FacesContext.getCurrentInstance().addMessage(null, message);
 			return null;
 		}

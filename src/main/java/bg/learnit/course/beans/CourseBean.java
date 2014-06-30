@@ -2,8 +2,6 @@ package bg.learnit.course.beans;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -12,7 +10,7 @@ import java.util.Set;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseId;
 import javax.servlet.http.Part;
@@ -24,7 +22,7 @@ import org.primefaces.model.StreamedContent;
 import bg.learnit.course.db.model.Course;
 import bg.learnit.course.service.CourseService;
 
-@RequestScoped
+@SessionScoped
 @ManagedBean(name = "courseBean")
 public class CourseBean {
 	
@@ -93,34 +91,23 @@ public class CourseBean {
 		return courseService.getAllCourses();
 	}
 	
+	private ByteArrayInputStream pictureStream;
+	
 	public StreamedContent getCoursePicture() {
 		FacesContext context = FacesContext.getCurrentInstance();
-		Map<String,String> params = context.getExternalContext().getRequestParameterMap();
-		String name = params.get("courseName");
 		
-		Course course = courseService.findCourse(name);
-
         if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
         	return new DefaultStreamedContent();
-        }
-        else {
-        	return new DefaultStreamedContent(new ByteArrayInputStream(course.getPicture()));
-        }
-	}
-	
-	public List<? extends StreamedContent> getCoursePictureStream() {
-		FacesContext context = FacesContext.getCurrentInstance();
-
-        if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
-            return Arrays.asList(new DefaultStreamedContent());
-        }
-        else {
-        	List<Course> courses = courseService.getAllCourses();
-        	List<StreamedContent> result = new ArrayList<StreamedContent>();
-        	for (Course course : courses) {
-        		result.add(new DefaultStreamedContent(new ByteArrayInputStream(course.getPicture())));
+        } else {
+        	if (picture == null) {
+	    		Map<String,String> params = context.getExternalContext().getRequestParameterMap();
+	    		String name = params.get("courseName");
+	        	Course course = courseService.findCourse(name);
+	        	System.out.println("Course is null? " + (course == null));
+	        	pictureStream = new ByteArrayInputStream(course.getPicture());
+	        	return new DefaultStreamedContent(pictureStream);
         	}
-            return result;
+        	return new DefaultStreamedContent();
         }
 	}
 
@@ -140,5 +127,4 @@ public class CourseBean {
 		courseService.saveCourse(name, startDate, endDate, tagSet, pictureAsBytes);
 		return "/pages/home/courses";
 	}
-
 }

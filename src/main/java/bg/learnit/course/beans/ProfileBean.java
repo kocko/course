@@ -46,8 +46,7 @@ public class ProfileBean {
 
         if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
             return new DefaultStreamedContent();
-        }
-        else {
+        } else {
         	User loggedInUser = loginBean.getLoggedInUser();
             return new DefaultStreamedContent(new ByteArrayInputStream(loggedInUser.getPicture()));
         }

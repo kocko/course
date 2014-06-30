@@ -25,9 +25,13 @@ public class CourseService {
 	
 	public Course findCourse(String name) {
 		Query query = new Query();
-		query.addCriteria(Criteria.where("name").is(name));
+		query.addCriteria(Criteria.where("id").is(name));
 		Course result = mongoTemplate.findOne(query, Course.class);
 		return result;
+	}
+	
+	public Course findOneTest() {
+		return mongoTemplate.findOne(new Query(), Course.class);
 	}
 	
 	public List<Course> getAllCourses() {

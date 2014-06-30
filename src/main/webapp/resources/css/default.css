@@ -6,12 +6,17 @@
 	font-size: 85% !important;
 }
 
+.ui-priority-primary, .ui-widget-content .ui-priority-primary, .ui-widget-header .ui-priority-primary {
+	font-weight: normal;
+	color: #ccccd5;
+}
+
 html,body {
+	height: 100%;
 	margin: 0;
 	padding: 0;
 	height: 100%;
 	font-family: Arial, sans-serif;
-	font-size: 85% !important;
 	color: #828c8f !important;
 	-webkit-text-size-adjust: 100%;
 	-ms-text-size-adjust: 100%;
@@ -20,6 +25,11 @@ html,body {
 th {
 	padding: 5;
 	height: 15;
+}
+
+table {
+	border-spacing: 5px;
+	border-collapse: separate;
 }
 
 label {
@@ -40,7 +50,7 @@ label {
 }
 
 .headerSecondColumn {
-	width: 40%;
+	width: 400px;
 	padding-right: 0px;
 }
 
@@ -55,18 +65,22 @@ label {
 }
 
 .content {
-	height: 75%;
+	margin: 0 auto -4em;
+	height: auto !important;
+	height: 100%;
+	min-height:100%;
 	background-color: #FFFFFF;
 	padding-left: 100px;
 }
 
+/* margin-top:-32767px; 
+   position: relative;	
+*/
+
 .footer {
 	width: 100%;
-	margin-top:-32767px;
-	height: 70;
-	min-height: 70;
-	position: absolute;
-	bottom: 0;
+	height: 30;
+	min-height: 30;
 	left: 0;
 	background-color: #E7E7E7;
 	padding-left: 10%;
@@ -80,6 +94,12 @@ label {
 }
 
 .loginForm {
+	position: relative;
+	width: 500px;
+	margin: 15% auto;
+}
+
+.registerForm {
 	position: relative;
 	width: 500px;
 	margin: 15% auto;

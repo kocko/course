@@ -5,21 +5,20 @@
 	template="/templates/baseTemplate.xhtml">
 	<ui:define name="content">
 		<h:form>
-			<p:panel header="Sign in" styleClass="loginForm">
-				<p:growl showSummary="true"/>
+			<p:panel header="#{msgs['login.signin']}" styleClass="loginForm">
+				<p:growl showSummary="true" showDetail="true"/>
 				<h:panelGrid columns="2">
 					<h:column>
 						<p:graphicImage library="images" name="padlock.png" height="128" width="128"/>
 					</h:column>
 					<h:column>
 						<h:panelGrid id="loginForm" columns="2">
-							<p:outputLabel for="email" value="Email" />
+							<p:outputLabel for="email" value="#{msgs['login.email']}" />
 							<p:inputText id="email" value="#{loginBean.email}" size="35" />
-							<p:outputLabel for="password" value="Password" />
-							<p:password id="password" value="#{loginBean.password}"
-										required="true" label="Password" size="35"/>
+							<p:outputLabel for="password" value="#{msgs['login.password']}" />
+							<p:password id="password" value="#{loginBean.password}" size="35"/>
 						</h:panelGrid>
-						<p:commandButton value="Come on in" styleClass="ui-priority-primary"
+						<p:commandButton value="#{msgs['login.comeonin']}" styleClass="ui-priority-primary"
 										 widgetVar="loginButton" 
 										 onclick="loginButton.disable()"
 										 oncomplete="loginButton.enable()"

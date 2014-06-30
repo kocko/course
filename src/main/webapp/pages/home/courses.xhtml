@@ -2,12 +2,11 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	template="/templates/baseTemplate.xhtml">
+	template="/templates/baseTemplate.xhtml">	
 	<ui:define name="content">
 		<p:button value="Add new course"
 				  outcome="/pages/home/addcourse"
 				  styleClass="ui-priority-primary" />
-				  
 		<p:panel header="Current courses">
 			<ui:repeat var="course" value="#{courseBean.courses}">
 				<h:panelGrid columns="2">
