@@ -4,6 +4,8 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import org.primefaces.util.Base64;
+
 public final class SecurityUtils {
 
 	public static String encryptToMD5(String input) {
@@ -14,16 +16,14 @@ public final class SecurityUtils {
 			inputAsBytes = input.getBytes("UTF-8");
 			encrypted = md5.digest(inputAsBytes);
 		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		String result = null;
 		if (encrypted != null) {
-			result = new String(encrypted);
+			result = Base64.encodeToString(encrypted, false);
 		}
 		
 		return result;
