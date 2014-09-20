@@ -8,6 +8,13 @@ import org.primefaces.util.Base64;
 
 public final class SecurityUtils {
 
+	/**
+	 * A private constructor, so that the class can not be initialized.
+	 */
+	private SecurityUtils() {
+		// empty block
+	}
+
 	public static String encryptToMD5(String input) {
 		byte[] inputAsBytes = null;
 		byte[] encrypted = null;
@@ -20,12 +27,13 @@ public final class SecurityUtils {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		
+
 		String result = null;
 		if (encrypted != null) {
 			result = Base64.encodeToString(encrypted, false);
 		}
-		
+
 		return result;
 	}
+
 }
