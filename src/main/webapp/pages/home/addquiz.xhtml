@@ -9,7 +9,8 @@
 			    <h:panelGrid columns="2">
 			    	<p:outputLabel for="course" value="#{msgs['addquiz.course']}"/>
 			    	<h:selectOneMenu value="#{quizBean.course}" required="true" id="course">
-			    		<f:selectItems value="#{courseService.allCourses}" var="course" />
+			    		<f:selectItems value="#{courseService.allCourses}" var="course"  
+			    					   itemLabel="#{course.name}" itemValue="#{course.name}" />
 			    	</h:selectOneMenu>
 			    </h:panelGrid>
 			</p:panel>   

@@ -5,14 +5,13 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.PhaseId;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 
 import org.apache.commons.io.IOUtils;
@@ -38,6 +37,8 @@ public class CourseBean {
 	private Date endDate;
 	
 	private String tags;
+	
+	private List<Course> allCourses;
 	
 	public CourseService getCourseService() {
 		return courseService;
@@ -88,27 +89,19 @@ public class CourseBean {
 	}
 	
 	public List<Course> getCourses() {
-		return courseService.getAllCourses();
+		if (this.allCourses == null) {
+			this.allCourses = courseService.getAllCourses();
+		}
+		return allCourses;
 	}
-	
-	private ByteArrayInputStream pictureStream;
 	
 	public StreamedContent getCoursePicture() {
 		FacesContext context = FacesContext.getCurrentInstance();
-		
-        if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
-        	return new DefaultStreamedContent();
-        } else {
-        	if (picture == null) {
-	    		Map<String,String> params = context.getExternalContext().getRequestParameterMap();
-	    		String name = params.get("courseName");
-	        	Course course = courseService.findCourse(name);
-	        	System.out.println("Course is null? " + (course == null));
-	        	pictureStream = new ByteArrayInputStream(course.getPicture());
-	        	return new DefaultStreamedContent(pictureStream);
-        	}
-        	return new DefaultStreamedContent();
-        }
+		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+	    String courseName = (String) request.getParameter("courseName");
+	    Course course = courseService.findCourse(courseName);
+	    ByteArrayInputStream pictureStream = new ByteArrayInputStream(course.getPicture());
+    	return new DefaultStreamedContent(pictureStream);
 	}
 
 	public String save() throws IOException {
@@ -127,4 +120,5 @@ public class CourseBean {
 		courseService.saveCourse(name, startDate, endDate, tagSet, pictureAsBytes);
 		return "/pages/home/courses";
 	}
+	
 }

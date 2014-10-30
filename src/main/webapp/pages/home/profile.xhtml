@@ -9,14 +9,12 @@
 				<p:messages id="messages" showDetail="true" autoUpdate="true" />
 				<p:panelGrid columns="2">
 					<f:facet name="header">
-				        <p:graphicImage value="#{profileBean.pictureStream}" width="100" height="100" 
+				        <p:graphicImage value="#{profileBean.pictureStream}" width="150" height="150" 
 										rendered="#{not empty loginBean.loggedInUser.picture}" cache="false"/>
 				    </f:facet>
 				    
-				    <p:row rendered="#{empty loginBean.loggedInUser.picture}">
-				    	<p:column><p:outputLabel for="picture" value="#{msgs['profile.avatar']}" /></p:column>
-				    	<p:column><h:inputFile id="picture" value="#{profileBean.picture}" /></p:column>
-				    </p:row>
+				    <p:outputLabel for="picture" value="#{msgs['profile.avatar']}" rendered="#{empty loginBean.loggedInUser.picture}"/>
+				    <h:inputFile id="picture" value="#{profileBean.picture}" rendered="#{empty loginBean.loggedInUser.picture}"/>
 				    
 					<p:outputLabel for="email" value="#{msgs['profile.email']}" />
 					<h:outputText id="email" value="#{loginBean.loggedInUser.email}" />
@@ -27,16 +25,14 @@
 					<p:outputLabel for="place" value="#{msgs['profile.place']}"/>
 					<p:inputText id="place" value="#{loginBean.loggedInUser.place}"/>
 					
-					<p:row>
-						<p:column colspan="2">
-							<p:commandButton value="#{msgs['profile.save']}" 
-										 styleClass="ui-priority-primary"
-										 widgetVar="saveButton" ajax="false"
-										 onclick="saveButton.disable()"
-										 oncomplete="saveButton.enable()"
-										 action="#{profileBean.updateProfile()}" />
-						</p:column>
-					</p:row>
+					<f:facet name="footer">
+						<p:commandButton value="#{msgs['profile.save']}" 
+									 styleClass="ui-priority-primary"
+									 widgetVar="saveButton" ajax="false"
+									 onclick="saveButton.disable()"
+									 oncomplete="saveButton.enable()"
+									 action="#{profileBean.updateProfile}" />
+					</f:facet>
 				</p:panelGrid>
 			</p:panel>
 		</h:form>

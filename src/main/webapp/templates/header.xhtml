@@ -6,19 +6,20 @@
 	<h:panelGrid columns="2" styleClass="header" columnClasses="headerFirstColumn, headerSecondColumn">
 		<p:graphicImage library="images" name="learnit.png" height="70" width="155"/>
 		
-		<h:panelGrid columns="2">
+		<h:panelGrid columns="3">
 			<h:form rendered="#{loginBean.loggedIn}" >
 				<h:panelGrid columns="4">
 					<h:outputText value="Здравейте, " style="font-size: 85% !important;"/>
 					<p:link outcome="/pages/home/profile" value="#{(not empty loginBean.loggedInUser.fullname) ? loginBean.loggedInUser.fullname : loginBean.loggedInUser.email}"/>
 					<h:outputText value="!"/>
 					<p:commandButton value="Sign out" styleClass="btn btn-danger"
-									 action="#{loginBean.logout()}" 
+									 action="#{loginBean.logout}" 
 									 immediate="true"/>
 				</h:panelGrid>
 			</h:form>
 			<p:button value="Register" styleClass="ui-priority-primary" outcome="/pages/register/register" rendered="#{not loginBean.loggedIn}"/>
 			<p:button value="Sign in" styleClass="ui-priority-primary"  outcome="/pages/login" rendered="#{not loginBean.loggedIn}"/>
 		</h:panelGrid>
+
 	</h:panelGrid>
 </ui:composition>

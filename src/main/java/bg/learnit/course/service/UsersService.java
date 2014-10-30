@@ -1,5 +1,7 @@
 package bg.learnit.course.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -30,5 +32,9 @@ public class UsersService {
 	
 	public void updateUser(User user) {
 		mongoTemplate.save(user);
+	}
+	
+	public List<User> getAllUsers() {
+		return mongoTemplate.findAll(User.class);
 	}
 }

@@ -6,34 +6,34 @@
 	<ui:define name="content">
 		<h:form enctype="multipart/form-data">
 			<p:panel header="#{msgs['addcourse.title']}">
-				    <h:panelGrid columns="2">
-				    	<p:outputLabel for="picture" value="#{msgs['addcourse.picture']}"/>
-				    	<h:inputFile id="picture" value="#{courseBean.picture}" />
-				    
-				    	<p:outputLabel for="name" value="#{msgs['addcourse.name']}"/>
-				    	<p:inputText id="name" placeholder="Java, PHP, etc." value="#{courseBean.name}"/>
-				    	
-				    	<p:outputLabel for="start" value="#{msgs['addcourse.startDate']}"/>
-				    	<p:calendar id="start" pattern="dd/MM/yyyy" value="#{courseBean.startDate}"/>
-				    	
-				    	<p:outputLabel for="end" value="#{msgs['addcourse.endDate']}"/>
-				    	<p:calendar id="end" pattern="dd/MM/yyyy" value="#{courseBean.endDate}"/>
-				    	
-				    	<p:outputLabel for="tags" value="#{msgs['addcourse.tags']}" />
-				    	<p:inputText id="tags" placeholder="java, php, mysql" value="#{courseBean.tags}"/>
-				    	
-		    			<p:commandButton value="#{msgs['addcourse.save']}" action="#{courseBean.save()}"
-		    							 styleClass="ui-priority-primary"
-										 widgetVar="saveButton" ajax="false"
-										 onclick="saveButton.disable()"
-										 oncomplete="saveButton.enable()"/>
-						<p:commandButton value="#{msgs['addcourse.cancel']}" widgetVar="cancelButton" 
-										 onclick="cancelButton.disable()"
-										 oncomplete="cancelButton.enable()"
-										 action="/pages/home/courses" 
-										 styleClass="ui-priority-primary" 
-										 immediate="true"/>
-				    </h:panelGrid>
+			    <h:panelGrid columns="2">
+			    	<p:outputLabel for="picture" value="#{msgs['addcourse.picture']}"/>
+			    	<h:inputFile id="picture" value="#{courseBean.picture}" />
+			    
+			    	<p:outputLabel for="name" value="#{msgs['addcourse.name']}"/>
+			    	<p:inputText id="name" placeholder="Java, PHP, etc." value="#{courseBean.name}"/>
+			    	
+			    	<p:outputLabel for="start" value="#{msgs['addcourse.startDate']}"/>
+			    	<p:calendar id="start" pattern="dd/MM/yyyy" value="#{courseBean.startDate}"/>
+			    	
+			    	<p:outputLabel for="end" value="#{msgs['addcourse.endDate']}"/>
+			    	<p:calendar id="end" pattern="dd/MM/yyyy" value="#{courseBean.endDate}"/>
+			    	
+			    	<p:outputLabel for="tags" value="#{msgs['addcourse.tags']}" />
+			    	<p:inputText id="tags" placeholder="java, php, mysql" value="#{courseBean.tags}"/>
+			    	
+	    			<p:commandButton value="#{msgs['addcourse.save']}" action="#{courseBean.save}"
+	    							 styleClass="ui-priority-primary"
+									 widgetVar="saveButton" ajax="false"
+									 onclick="saveButton.disable()"
+									 oncomplete="saveButton.enable()"/>
+					<p:commandButton value="#{msgs['addcourse.cancel']}" widgetVar="cancelButton" 
+									 onclick="cancelButton.disable()"
+									 oncomplete="cancelButton.enable()"
+									 action="/pages/home/courses" 
+									 styleClass="ui-priority-primary" 
+									 immediate="true"/>
+			    </h:panelGrid>
 			</p:panel>   
 		</h:form>
 	</ui:define>
