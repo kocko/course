@@ -2,6 +2,8 @@ package bg.learnit.course.beans;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -119,6 +121,12 @@ public class CourseBean {
 		}
 		courseService.saveCourse(name, startDate, endDate, tagSet, pictureAsBytes);
 		return "/pages/home/courses";
+	}
+	
+	public static void main(String[] args) throws UnsupportedEncodingException {
+		String sentence = new String("TEST".getBytes(), "UTF-8");
+		String test2 = new String("TEST".getBytes(), Charset.forName("UTF-8"));
+		System.out.println(sentence.equals(test2));
 	}
 	
 }

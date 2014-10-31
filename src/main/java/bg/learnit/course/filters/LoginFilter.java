@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import bg.learnit.course.beans.LoginBean;
 
 /**
- * Filter checks if LoginBean has loggedIn property set to true.
+ * Filter checks if LoginBean has its loggedIn property set to {@code true}.
  * If it is not set then request is being redirected to the login.xhml page.
  * 
  * @author kocko
@@ -46,5 +46,5 @@ public class LoginFilter implements Filter {
 
 	public void destroy() {
 		// Nothing to do here!
-	}	
+	}
 }
