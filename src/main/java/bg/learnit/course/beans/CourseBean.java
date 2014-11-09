@@ -2,8 +2,6 @@ package bg.learnit.course.beans;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -11,9 +9,9 @@ import java.util.Set;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
+import javax.faces.event.PhaseId;
 import javax.servlet.http.Part;
 
 import org.apache.commons.io.IOUtils;
@@ -22,8 +20,9 @@ import org.primefaces.model.StreamedContent;
 
 import bg.learnit.course.db.model.Course;
 import bg.learnit.course.service.CourseService;
+import bg.learnit.course.util.JSFUtils;
 
-@SessionScoped
+@RequestScoped
 @ManagedBean(name = "courseBean")
 public class CourseBean {
 	
@@ -99,11 +98,14 @@ public class CourseBean {
 	
 	public StreamedContent getCoursePicture() {
 		FacesContext context = FacesContext.getCurrentInstance();
-		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-	    String courseName = (String) request.getParameter("courseName");
-	    Course course = courseService.findCourse(courseName);
-	    ByteArrayInputStream pictureStream = new ByteArrayInputStream(course.getPicture());
-    	return new DefaultStreamedContent(pictureStream);
+		if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
+            return new DefaultStreamedContent();
+		} else {
+		    String courseName = context.getExternalContext().getRequestParameterMap().get("courseName");
+		    Course course = courseService.findCourse(courseName);
+		    ByteArrayInputStream pictureStream = new ByteArrayInputStream(course.getPicture());
+	    	return new DefaultStreamedContent(pictureStream);
+		}
 	}
 
 	public String save() throws IOException {
@@ -123,10 +125,15 @@ public class CourseBean {
 		return "/pages/home/courses";
 	}
 	
-	public static void main(String[] args) throws UnsupportedEncodingException {
-		String sentence = new String("TEST".getBytes(), "UTF-8");
-		String test2 = new String("TEST".getBytes(), Charset.forName("UTF-8"));
-		System.out.println(sentence.equals(test2));
+	public String selectCurrentCourse(String courseName) {
+		LoginBean loginBean = JSFUtils.getBean("loginBean", LoginBean.class);
+		for (Course c : allCourses) {
+			if  (c.getName().equals(courseName)) {
+				loginBean.setSelectedCourse(c);
+				break;
+			}
+		}
+		return "/pages/home/index";
 	}
 	
 }

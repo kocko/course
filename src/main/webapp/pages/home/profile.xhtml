@@ -2,19 +2,16 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
 	template="/templates/baseTemplate.xhtml">
 	<ui:define name="content">
-		<h:form enctype="multipart/form-data">
+		<h:form>
 			<p:panel header="#{msgs['profile.title']}">
 				<p:messages id="messages" showDetail="true" autoUpdate="true" />
 				<p:panelGrid columns="2">
 					<f:facet name="header">
-				        <p:graphicImage value="#{profileBean.pictureStream}" width="150" height="150" 
-										rendered="#{not empty loginBean.loggedInUser.picture}" cache="false"/>
+						<pe:gravatar value="#{loginBean.loggedInUser.email}" notFound="mm"/> 
 				    </f:facet>
-				    
-				    <p:outputLabel for="picture" value="#{msgs['profile.avatar']}" rendered="#{empty loginBean.loggedInUser.picture}"/>
-				    <h:inputFile id="picture" value="#{profileBean.picture}" rendered="#{empty loginBean.loggedInUser.picture}"/>
 				    
 					<p:outputLabel for="email" value="#{msgs['profile.email']}" />
 					<h:outputText id="email" value="#{loginBean.loggedInUser.email}" />

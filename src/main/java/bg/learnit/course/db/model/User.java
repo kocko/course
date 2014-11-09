@@ -1,5 +1,8 @@
 package bg.learnit.course.db.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -16,6 +19,8 @@ public class User {
 	private String place;
 	
 	private byte[] picture;
+	
+	private Set<String> courses;
 
 	public User(String email, String password) {
 		this.email = email;
@@ -60,5 +65,12 @@ public class User {
 	
 	public void setPicture(byte[] picture) {
 		this.picture = picture;
+	}
+	
+	public Set<String> getCourses() {
+		if (courses == null) {
+			courses = new HashSet<String>();
+		}
+		return courses;
 	}
 }

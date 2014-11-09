@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import bg.learnit.course.db.model.Course;
 import bg.learnit.course.db.model.User;
 import bg.learnit.course.service.UsersService;
 
@@ -26,6 +27,8 @@ public class LoginBean {
 	private String password;
 	
 	private User loggedInUser;
+	
+	private Course selectedCourse;
 	
 	@ManagedProperty(name = "usersService", value = "#{usersService}")
 	private UsersService usersService;
@@ -54,6 +57,14 @@ public class LoginBean {
 		this.loggedInUser = loggedInUser;
 	}
 	
+	public Course getSelectedCourse() {
+		return selectedCourse;
+	}
+	
+	public void setSelectedCourse(Course selectedCourse) {
+		this.selectedCourse = selectedCourse;
+	}
+	
 	public UsersService getUsersService() {
 		return usersService;
 	}
@@ -79,9 +90,21 @@ public class LoginBean {
 	}
 	
 	public String logout() {
-		loggedInUser = null;
-		email = null;
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();;
 		return "/pages/login.jsf?faces-redirect=true";
 	}
+	
+	public String enrollToCourse(String courseName) {
+		boolean success = loggedInUser.getCourses().add(courseName);
+		if (!success) {
+			//Most probably, the course already exists in the Set.
+			//Although the user will be disallowed to click the UI button, a safety check should be applied.
+			//TODO: Add a FacesMessage with an error, saying that the selected course already exists in the Set.
+			return null;
+		}
+		usersService.updateUser(loggedInUser);
+		return "/pages/home/index";
+	}
+
+
 }

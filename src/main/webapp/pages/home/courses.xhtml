@@ -4,10 +4,10 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/templates/baseTemplate.xhtml">	
 	<ui:define name="content">
-		<p:button value="Add new course"
+		<p:button value="#{msgs['addcourse.title']}"
 				  outcome="/pages/home/addcourse"
 				  styleClass="ui-priority-primary" />
-		<p:panel header="Current courses">
+		<p:panel header="#{msgs['courses.runningCourses']}">
 			<ui:repeat var="course" value="#{courseBean.courses}">
 				<h:panelGrid columns="2">
 					<p:graphicImage value="#{courseBean.coursePicture}" 
@@ -15,16 +15,21 @@
 						<f:param name="courseName" value="#{course.name}"/>
 					</p:graphicImage>
 					<h:panelGrid columns="2">
-						<p:outputLabel value="Start Date" for="startDate"/>
+						<p:outputLabel value="#{msgs['courses.startDate']}" for="startDate"/>
 						<h:outputText value="#{course.start}" id="startDate">
 							<f:convertDateTime dateStyle="medium" />
 						</h:outputText>
 					
-						<p:outputLabel value="End Date" for="endDate"/>
-						<h:outputText value="#{course.end}" id="endDate"/>
+						<p:outputLabel value="#{msgs['courses.endDate']}" for="endDate"/>
+						<h:outputText value="#{course.end}" id="endDate">
+							<f:convertDateTime dateStyle="medium" />
+						</h:outputText>
 						
-						<p:outputLabel value="Tags" for="tags"/>
+						<p:outputLabel value="#{msgs['courses.tags']}" for="tags"/>
 						<h:outputText value="#{course.tags}" id="tags"/>
+						
+						<p:commandButton value="#{msgs['courses.enroll']}" 
+										 action="#{loginBean.enrollToCourse(course.name)}"/>
 					</h:panelGrid>
 				</h:panelGrid>
 				<p:separator />

@@ -3,12 +3,19 @@
 	  xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:p="http://primefaces.org/ui"
 	  xmlns:f="http://java.sun.com/jsf/core">
-	<h:panelGrid columns="3" styleClass="header" columnClasses="headerFirstColumn, headerSecondColumn, headerSecondColumn">
+	<h:panelGrid columns="3" styleClass="header" columnClasses="headerFirstColumn, headerFirstColumn, headerSecondColumn">
 		<p:graphicImage library="images" name="learnit.png" height="70" width="155"/>
 		
-		<h:panelGrid>
-			<p:link outcome="/pages/home/courses" value="#{'Courses'}" />
-		</h:panelGrid>
+		<h:panelGroup rendered="#{loginBean.loggedIn}">
+			<ul class="nav nav-pills nav-justified">
+				<li><p:link value="#{msgs['menu.home']}" outcome="/pages/home/index.jsf" /></li>
+				<li><p:link value="#{msgs['menu.news']}" outcome="/pages/home/index.jsf" /></li>
+				<li><p:link value="#{msgs['menu.allcourses']}" outcome="/pages/home/courses" /></li>
+				<li><p:link value="#{msgs['menu.mycourses']}" outcome="/pages/home/courses" /></li>
+				<li><p:link value="#{msgs['menu.notifications']}" outcome="/pages/home/index.jsf" /></li>
+				<li><p:link value="#{msgs['menu.team']}" outcome="/pages/home/index.jsf" /></li>
+			</ul>
+		</h:panelGroup>
 		
 		<h:panelGrid columns="3">
 			<h:form rendered="#{loginBean.loggedIn}" >

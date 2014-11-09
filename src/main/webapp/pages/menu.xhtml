@@ -2,16 +2,18 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-	<h:panelGroup rendered="#{loginBean.loggedIn}">
+	<h:panelGroup rendered="#{loginBean.loggedIn and loginBean.selectedCourse != null}">
 		<ul class="nav nav-pills nav-justified">
-			<li><p:link value="#{msgs['menu.home']}" outcome="/pages/home/index.jsf" /></li>
+			<li>
+			<!-- 	<p:graphicImage value="#{loginBean.selectedCourse.picture}" width="100" height="100" 
+							    rendered="#{not empty loginBean.selectedCourse.picture}" cache="false"/> -->
+			</li>
 			<li><p:link value="#{msgs['menu.news']}" outcome="/pages/home/index.jsf" /></li>
 			<li><p:link value="#{msgs['menu.materials']}" outcome="/pages/home/index.jsf" /></li>
 			<li><p:link value="#{msgs['menu.tasks']}" outcome="/pages/home/index.jsf" /></li>
 			<li><p:link value="#{msgs['menu.quizzes']}" outcome="/pages/home/quizzes.jsf" /></li>
 			<li><p:link value="#{msgs['menu.forums']}" outcome="/pages/home/index.jsf" /></li>
 			<li><p:link value="#{msgs['menu.participants']}" outcome="/pages/home/users.jsf" /></li>
-			<li><p:link value="#{msgs['menu.team']}" outcome="/pages/home/index.jsf" /></li>
 		</ul>
 	</h:panelGroup>
 </f:view>
