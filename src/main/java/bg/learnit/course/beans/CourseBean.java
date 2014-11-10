@@ -99,7 +99,7 @@ public class CourseBean {
 	public StreamedContent getCoursePicture() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
-            return new DefaultStreamedContent();
+			return new DefaultStreamedContent();
 		} else {
 		    String courseName = context.getExternalContext().getRequestParameterMap().get("courseName");
 		    Course course = courseService.findCourse(courseName);
