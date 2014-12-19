@@ -7,33 +7,36 @@
 		<p:button value="#{msgs['addcourse.title']}"
 				  outcome="/pages/home/addcourse"
 				  styleClass="ui-priority-primary" />
-		<p:panel header="#{msgs['courses.runningCourses']}">
-			<ui:repeat var="course" value="#{courseBean.courses}">
-				<h:panelGrid columns="2">
-					<p:graphicImage value="#{courseBean.coursePicture}" 
-									cache="false" width="200" height="140" >
-						<f:param name="courseName" value="#{course.name}"/>
-					</p:graphicImage>
+		<h:form>
+			<p:panel header="#{msgs['courses.runningCourses']}">
+				<p:growl showSummary="true" showDetail="true"/>
+				<ui:repeat var="course" value="#{courseBean.courses}">
 					<h:panelGrid columns="2">
-						<p:outputLabel value="#{msgs['courses.startDate']}" for="startDate"/>
-						<h:outputText value="#{course.start}" id="startDate">
-							<f:convertDateTime dateStyle="medium" />
-						</h:outputText>
-					
-						<p:outputLabel value="#{msgs['courses.endDate']}" for="endDate"/>
-						<h:outputText value="#{course.end}" id="endDate">
-							<f:convertDateTime dateStyle="medium" />
-						</h:outputText>
+						<p:graphicImage value="#{courseBean.coursePicture}" 
+										cache="false" width="200" height="140" >
+							<f:param name="courseName" value="#{course.name}"/>
+						</p:graphicImage>
+						<h:panelGrid columns="2">
+							<p:outputLabel value="#{msgs['courses.startDate']}" for="startDate"/>
+							<h:outputText value="#{course.start}" id="startDate">
+								<f:convertDateTime dateStyle="medium" />
+							</h:outputText>
 						
-						<p:outputLabel value="#{msgs['courses.tags']}" for="tags"/>
-						<h:outputText value="#{course.tags}" id="tags"/>
-						
-						<p:commandButton value="#{msgs['courses.enroll']}" 
-										 action="#{loginBean.enrollToCourse(course.name)}"/>
+							<p:outputLabel value="#{msgs['courses.endDate']}" for="endDate"/>
+							<h:outputText value="#{course.end}" id="endDate">
+								<f:convertDateTime dateStyle="medium" />
+							</h:outputText>
+							
+							<p:outputLabel value="#{msgs['courses.tags']}" for="tags"/>
+							<h:outputText value="#{course.tags}" id="tags"/>
+							
+							<p:commandButton value="#{msgs['courses.enroll']}" styleClass="ui-priority-primary"
+											 action="#{loginBean.enrollToCourse(course.name)}"/>
+						</h:panelGrid>
 					</h:panelGrid>
-				</h:panelGrid>
-				<p:separator />
-			</ui:repeat>
-		</p:panel>
+					<p:separator />
+				</ui:repeat>
+			</p:panel>
+		</h:form>
 	</ui:define>
 </ui:composition>

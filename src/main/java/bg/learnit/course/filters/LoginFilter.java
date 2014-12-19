@@ -14,38 +14,38 @@ import javax.servlet.http.HttpServletResponse;
 import bg.learnit.course.beans.LoginBean;
 
 /**
- * Filter checks if LoginBean has its loggedIn property set to {@code true}.
- * If it is not set then request is being redirected to the login.xhml page.
+ * Filter checks if LoginBean has its loggedIn property set to {@code true}. If
+ * it is not set then request is being redirected to the login.xhml page.
  * 
  * @author kocko
  *
  */
-
 public class LoginFilter implements Filter {
 
-	/**
-	 * Checks if user is logged in. If not it redirects to the login.xhtml page.
-	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-		
-		LoginBean loginBean = (LoginBean) (httpServletRequest.getSession().getAttribute("loginBean"));
+    /**
+     * Checks if user is logged in. If not it redirects to the login.xhtml page.
+     */
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 
-		if (loginBean != null && loginBean.getLoggedInUser() != null) {
-			chain.doFilter(request, response);
-		} else {
-			HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-			String contextPath = httpServletRequest.getContextPath();
-			httpServletResponse.sendRedirect(contextPath + "/pages/login.jsf");
-		}
-			
-	}
+        LoginBean loginBean = (LoginBean) (httpServletRequest.getSession().getAttribute("loginBean"));
 
-	public void init(FilterConfig config) throws ServletException {
-		// Nothing to do here!
-	}
+        if (loginBean != null && loginBean.getLoggedInUser() != null) {
+            chain.doFilter(request, response);
+        } else {
+            HttpServletResponse httpServletResponse = (HttpServletResponse) response;
+            String contextPath = httpServletRequest.getContextPath();
+            httpServletResponse.sendRedirect(contextPath + "/pages/login.jsf");
+        }
 
-	public void destroy() {
-		// Nothing to do here!
-	}
+    }
+
+    public void init(FilterConfig config) throws ServletException {
+        // Nothing to do here!
+    }
+
+    public void destroy() {
+        // Nothing to do here!
+    }
+    
 }

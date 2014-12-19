@@ -19,46 +19,45 @@ import javax.mail.internet.MimeMessage;
 @ApplicationScoped
 @ManagedBean(name = "mailer")
 public final class Mailer {
-	private final Properties properties = new Properties();
-	
-	@PostConstruct
-	public void init() {
-		InputStream input;
-		try {
-			input = getClass().getResourceAsStream("/mail.properties");
-			properties.load(input);
-		} catch (FileNotFoundException e) {
-			//TODO handle the exception
-			e.printStackTrace();
-		} catch (IOException e) {
-			//TODO handle the exception
-			e.printStackTrace();
-		}
-	}
+    private final Properties properties = new Properties();
 
-	public void sendMail(String recipient, String subject, String body) {
-		
-		final String username = properties.getProperty("from.username");
-		final String password = properties.getProperty("from.password");
+    @PostConstruct
+    public void init() {
+        InputStream input;
+        try {
+            input = getClass().getResourceAsStream("/mail.properties");
+            properties.load(input);
+        } catch (FileNotFoundException e) {
+            // TODO handle the exception
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO handle the exception
+            e.printStackTrace();
+        }
+    }
 
-		Session session = Session.getDefaultInstance(properties, 
-			new javax.mail.Authenticator() {
-				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication(username, password);
-				}
-			}
-		);
+    public void sendMail(String recipient, String subject, String body) {
 
-		try {
-			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress(username));
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient));
-			message.setSubject(subject);
-			message.setText(body);
-			
-			Transport.send(message);
-		} catch (MessagingException e) {
-			throw new RuntimeException(e);
-		}
-	}
+        final String username = properties.getProperty("from.username");
+        final String password = properties.getProperty("from.password");
+
+        Session session = Session.getDefaultInstance(properties,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(username));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient));
+            message.setSubject(subject);
+            message.setText(body);
+
+            Transport.send(message);
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

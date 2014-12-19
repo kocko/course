@@ -25,115 +25,118 @@ import bg.learnit.course.util.JSFUtils;
 @RequestScoped
 @ManagedBean(name = "courseBean")
 public class CourseBean {
-	
-	@ManagedProperty(name = "courseService", value = "#{courseService}")
-	private CourseService courseService;
-	
-	private Part picture;
-	
-	private String name;
-	
-	private Date startDate;
-	
-	private Date endDate;
-	
-	private String tags;
-	
-	private List<Course> allCourses;
-	
-	public CourseService getCourseService() {
-		return courseService;
-	}
 
-	public void setCourseService(CourseService courseService) {
-		this.courseService = courseService;
-	}
+    @ManagedProperty(name = "courseService", value = "#{courseService}")
+    private CourseService courseService;
 
-	public Part getPicture() {
-		return picture;
-	}
+    private Part picture;
 
-	public void setPicture(Part picture) {
-		this.picture = picture;
-	}
+    private String name;
 
-	public String getName() {
-		return name;
-	}
+    private Date startDate;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    private Date endDate;
 
-	public Date getStartDate() {
-		return startDate;
-	}
+    private String tags;
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
+    private List<Course> allCourses;
 
-	public Date getEndDate() {
-		return endDate;
-	}
+    public CourseService getCourseService() {
+        return courseService;
+    }
 
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
+    public void setCourseService(CourseService courseService) {
+        this.courseService = courseService;
+    }
 
-	public String getTags() {
-		return tags;
-	}
+    public Part getPicture() {
+        return picture;
+    }
 
-	public void setTags(String tags) {
-		this.tags = tags;
-	}
-	
-	public List<Course> getCourses() {
-		if (this.allCourses == null) {
-			this.allCourses = courseService.getAllCourses();
-		}
-		return allCourses;
-	}
-	
-	public StreamedContent getCoursePicture() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
-			return new DefaultStreamedContent();
-		} else {
-		    String courseName = context.getExternalContext().getRequestParameterMap().get("courseName");
-		    Course course = courseService.findCourse(courseName);
-		    ByteArrayInputStream pictureStream = new ByteArrayInputStream(course.getPicture());
-	    	return new DefaultStreamedContent(pictureStream);
-		}
-	}
+    public void setPicture(Part picture) {
+        this.picture = picture;
+    }
 
-	public String save() throws IOException {
-		Set<String> tagSet = new HashSet<String>();
-		if (tags != null) {
-			String[] split = tags.split(",");
-			for (String item : split) {
-				tagSet.add(item.trim());
-			}
-		}
-		
-		byte[] pictureAsBytes = null;
-		if (picture != null) {
-			pictureAsBytes = IOUtils.toByteArray(picture.getInputStream());
-		}
-		courseService.saveCourse(name, startDate, endDate, tagSet, pictureAsBytes);
-		return "/pages/home/courses";
-	}
-	
-	public String selectCurrentCourse(String courseName) {
-		LoginBean loginBean = JSFUtils.getBean("loginBean", LoginBean.class);
-		for (Course c : allCourses) {
-			if  (c.getName().equals(courseName)) {
-				loginBean.setSelectedCourse(c);
-				break;
-			}
-		}
-		return "/pages/home/index";
-	}
-	
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
+
+    public List<Course> getCourses() {
+        if (this.allCourses == null) {
+            this.allCourses = courseService.getAllCourses();
+        }
+        return allCourses;
+    }
+
+    public StreamedContent getCoursePicture() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
+            return new DefaultStreamedContent();
+        } else {
+            String courseName = context.getExternalContext()
+                    .getRequestParameterMap().get("courseName");
+            Course course = courseService.findCourse(courseName);
+            ByteArrayInputStream pictureStream = new ByteArrayInputStream(
+                    course.getPicture());
+            return new DefaultStreamedContent(pictureStream);
+        }
+    }
+
+    public String save() throws IOException {
+        Set<String> tagSet = new HashSet<String>();
+        if (tags != null) {
+            String[] split = tags.split(",");
+            for (String item : split) {
+                tagSet.add(item.trim());
+            }
+        }
+
+        byte[] pictureAsBytes = null;
+        if (picture != null) {
+            pictureAsBytes = IOUtils.toByteArray(picture.getInputStream());
+        }
+        courseService.saveCourse(name, startDate, endDate, tagSet,
+                pictureAsBytes);
+        return "/pages/home/courses";
+    }
+
+    public String selectCurrentCourse(String courseName) {
+        LoginBean loginBean = JSFUtils.getBean("loginBean", LoginBean.class);
+        for (Course c : allCourses) {
+            if (c.getName().equals(courseName)) {
+                loginBean.setSelectedCourse(c);
+                break;
+            }
+        }
+        return "/pages/home/index";
+    }
+
 }

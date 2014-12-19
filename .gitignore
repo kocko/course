@@ -1,1 +1,5 @@
 target/
+/.sonar/
+/.classpath
+/sonar-project.properties
+/.metadata

@@ -11,21 +11,21 @@ import bg.learnit.course.db.model.User;
 @RequestScoped
 @ManagedBean(name = "profileBean")
 public class ProfileBean {
-	
-	@ManagedProperty(name = "loginBean", value="#{loginBean}")
-	private LoginBean loginBean;
-	
-	public LoginBean getLoginBean() {
-		return loginBean;
-	}
-	
-	public void setLoginBean(LoginBean loginBean) {
-		this.loginBean = loginBean;
-	}
-	
-	public String updateProfile() throws IOException {
-		User loggedInUser = loginBean.getLoggedInUser();
-		loginBean.getUsersService().updateUser(loggedInUser);
-		return "/pages/home/index";
-	}
+
+    @ManagedProperty(name = "loginBean", value = "#{loginBean}")
+    private LoginBean loginBean;
+
+    public LoginBean getLoginBean() {
+        return loginBean;
+    }
+
+    public void setLoginBean(LoginBean loginBean) {
+        this.loginBean = loginBean;
+    }
+
+    public String updateProfile() throws IOException {
+        User loggedInUser = loginBean.getLoggedInUser();
+        loginBean.getUsersService().updateUser(loggedInUser);
+        return "/pages/home/index";
+    }
 }

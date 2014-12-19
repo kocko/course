@@ -10,7 +10,7 @@
 	
 	<context:component-scan base-package="bg.learnit" />
 	
-	<context:property-placeholder location="classpath:mail.properties, classpath:mongodb_local.properties" /> 
+	<context:property-placeholder location="classpath:mail.properties, classpath:mongodb.properties" /> 
 		
 	<mongo:db-factory dbname="${mongodb.dbname}" host="${mongodb.host}" 
 					  port="${mongodb.port}" id="mongoDbFactory" 

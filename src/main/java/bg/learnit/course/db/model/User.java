@@ -9,68 +9,68 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "users")
 public class User {
 
-	@Id
-	private String email;
+    @Id
+    private String email;
 
-	private String password;
-	
-	private String fullname;
-	
-	private String place;
-	
-	private byte[] picture;
-	
-	private Set<String> courses;
+    private String password;
 
-	public User(String email, String password) {
-		this.email = email;
-		this.password = password;
-	}
+    private String fullname;
 
-	public String getEmail() {
-		return email;
-	}
+    private String place;
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    private byte[] picture;
 
-	public String getPassword() {
-		return password;
-	}
+    private Set<String> courses;
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	public String getFullname() {
-		return fullname;
-	}
-	
-	public void setFullname(String fullname) {
-		this.fullname = fullname;
-	}
-	
-	public String getPlace() {
-		return place;
-	}
-	
-	public void setPlace(String place) {
-		this.place = place;
-	}
-	
-	public byte[] getPicture() {
-		return picture;
-	}
-	
-	public void setPicture(byte[] picture) {
-		this.picture = picture;
-	}
-	
-	public Set<String> getCourses() {
-		if (courses == null) {
-			courses = new HashSet<String>();
-		}
-		return courses;
-	}
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public byte[] getPicture() {
+        return picture;
+    }
+
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
+    }
+
+    public Set<String> getCourses() {
+        if (courses == null) {
+            courses = new HashSet<String>();
+        }
+        return courses;
+    }
 }
