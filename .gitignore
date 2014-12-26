@@ -3,3 +3,6 @@ target/
 /.classpath
 /sonar-project.properties
 /.metadata
+/src/main/resources/mail.properties
+/src/main/resources/mongodb.properties
+/src/main/resources/mongodb_local.properties
