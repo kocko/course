@@ -1,17 +1,14 @@
+
 <f:view xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 	<h:panelGroup rendered="#{loginBean.loggedIn and loginBean.selectedCourse != null}">
 		<ul class="nav nav-pills nav-justified" role="tablist">
-			<li>
-			<!-- 	<p:graphicImage value="#{loginBean.selectedCourse.picture}" width="100" height="100" 
-							    rendered="#{not empty loginBean.selectedCourse.picture}" cache="false"/> -->
-			</li>
 			<li><p:link value="#{msgs['menu.news']}" outcome="/pages/home/underConstruction.jsf" /></li>
 			<li><p:link value="#{msgs['menu.materials']}" outcome="/pages/home/underConstruction.jsf" /></li>
 			<li><p:link value="#{msgs['menu.tasks']}" outcome="/pages/home/underConstruction.jsf" /></li>
-			<li><p:link value="#{msgs['menu.quizzes']}" outcome="/pages/home/quizzes.jsf" /></li>
+			<li><p:link value="#{msgs['menu.quizzes']}" outcome="/pages/home/course/quizzes.jsf" /></li>
 			<li><p:link value="#{msgs['menu.forums']}" outcome="/pages/home/underConstruction.jsf" /></li>
 			<li><p:link value="#{msgs['menu.participants']}" outcome="/pages/home/users.jsf" /></li>
 		</ul>

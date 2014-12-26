@@ -2,6 +2,7 @@ package bg.learnit.course.beans;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -131,7 +132,7 @@ public class CourseBean {
 
     public String selectCurrentCourse(String courseName) {
         LoginBean loginBean = JSFUtils.getBean("loginBean", LoginBean.class);
-        for (Course c : allCourses) {
+        for (Course c : getMyCourses()) {
             if (c.getName().equals(courseName)) {
                 loginBean.setSelectedCourse(c);
                 break;
@@ -151,6 +152,16 @@ public class CourseBean {
         }
         loginBean.updateLoggedInUser();
         return "/pages/home/index.jsf?faces-redirect=true";
+    }
+    
+    public List<Course> getMyCourses() {
+        LoginBean loginBean = JSFUtils.getBean("loginBean", LoginBean.class);
+        Set<String> courseNames = loginBean.getLoggedInUser().getCourses();
+        List<Course> result = new ArrayList<>();
+        for (String name : courseNames) {
+            result.add(courseService.findCourse(name));
+        }
+        return result;
     }
 
 }
