@@ -1,6 +1,5 @@
 package bg.learnit.course.beans;
 
-import java.io.IOException;
 import java.util.ResourceBundle;
 
 import javax.faces.application.FacesMessage;
@@ -14,7 +13,6 @@ import org.apache.log4j.Logger;
 import bg.learnit.course.db.model.Course;
 import bg.learnit.course.db.model.User;
 import bg.learnit.course.service.UsersService;
-import bg.learnit.course.util.JSFUtils;
 
 /**
  * 
@@ -102,22 +100,9 @@ public class LoginBean {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "/pages/login.jsf?faces-redirect=true";
     }
-
-    // TODO: Fix this, as it will have to be action, not actionListener (due to
-    // the navigation)
-    public String enrollToCourse(String courseName) throws IOException {
-        LoginBean loginBean = JSFUtils.getBean("loginBean", LoginBean.class);
-        User currentUser = loginBean.getLoggedInUser();
-        boolean success = currentUser.getCourses().add(courseName);
-        if (!success) {
-            ResourceBundle bundle = ResourceBundle.getBundle("i18n.messages", FacesContext.getCurrentInstance().getViewRoot().getLocale());
-            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, bundle.getString("enroll.alreadyEnrolled"), bundle.getString("enroll.alreadyEnrolled"));
-            FacesContext.getCurrentInstance().addMessage(null, message);
-            return null;
-        }
-        loginBean.getUsersService().updateUser(currentUser);
-        // FacesContext.getCurrentInstance().getExternalContext().redirect("index.jsf");
-        return "pages/index.jsf?faces-redirect=true";
+    
+    public void updateLoggedInUser() {
+        getUsersService().updateUser(loggedInUser);
     }
 
 }

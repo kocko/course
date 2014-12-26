@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.Set;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -123,8 +125,7 @@ public class CourseBean {
         if (picture != null) {
             pictureAsBytes = IOUtils.toByteArray(picture.getInputStream());
         }
-        courseService.saveCourse(name, startDate, endDate, tagSet,
-                pictureAsBytes);
+        courseService.saveCourse(name, startDate, endDate, tagSet, pictureAsBytes);
         return "/pages/home/courses";
     }
 
@@ -137,6 +138,19 @@ public class CourseBean {
             }
         }
         return "/pages/home/index";
+    }
+    
+    public String enrollToCourse(String courseName) {
+        LoginBean loginBean = JSFUtils.getBean("loginBean", LoginBean.class);
+        boolean success = loginBean.getLoggedInUser().getCourses().add(courseName);
+        if (!success) {
+            ResourceBundle bundle = ResourceBundle.getBundle("i18n.messages", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, bundle.getString("enroll.alreadyEnrolled"), bundle.getString("enroll.alreadyEnrolled"));
+            FacesContext.getCurrentInstance().addMessage(null, message);
+            return null;
+        }
+        loginBean.updateLoggedInUser();
+        return "/pages/home/index.jsf?faces-redirect=true";
     }
 
 }

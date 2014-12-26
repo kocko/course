@@ -2,41 +2,40 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	template="/templates/baseTemplate.xhtml">	
+	template="/templates/baseTemplate.xhtml">
 	<ui:define name="content">
-		<p:button value="#{msgs['addcourse.title']}"
-				  outcome="/pages/home/addcourse"
-				  styleClass="ui-priority-primary" />
+		<p:button value="#{msgs['addcourse.title']}" outcome="/pages/home/addcourse" styleClass="ui-priority-primary" />
 		<h:form>
-			<p:panel header="#{msgs['courses.runningCourses']}">
-				<p:growl showSummary="true" showDetail="true"/>
-				<ui:repeat var="course" value="#{courseBean.courses}">
-					<h:panelGrid columns="2">
-						<p:graphicImage value="#{courseBean.coursePicture}" 
-										cache="false" width="200" height="140" >
-							<f:param name="courseName" value="#{course.name}"/>
-						</p:graphicImage>
+			<p:dataScroller value="#{courseBean.courses}" var="course" chunkSize="10">
+				<p:growl showSummary="true" showDetail="true" id="growl" />
+				<f:facet name="header">
+					<h:outputText value="#{msgs['courses.runningCourses']}" />
+				</f:facet>
+				<h:panelGrid columns="2">
+					<p:graphicImage value="#{courseBean.coursePicture}" cache="false" width="200" height="140">
+						<f:param name="courseName" value="#{course.name}" />
+					</p:graphicImage>
+					<p:outputPanel>
 						<h:panelGrid columns="2">
-							<p:outputLabel value="#{msgs['courses.startDate']}" for="startDate"/>
+							<p:outputLabel value="#{msgs['courses.startDate']}" for="startDate" />
 							<h:outputText value="#{course.start}" id="startDate">
 								<f:convertDateTime dateStyle="medium" />
 							</h:outputText>
-						
-							<p:outputLabel value="#{msgs['courses.endDate']}" for="endDate"/>
+	
+							<p:outputLabel value="#{msgs['courses.endDate']}" for="endDate" />
 							<h:outputText value="#{course.end}" id="endDate">
 								<f:convertDateTime dateStyle="medium" />
 							</h:outputText>
-							
-							<p:outputLabel value="#{msgs['courses.tags']}" for="tags"/>
-							<h:outputText value="#{course.tags}" id="tags"/>
-							
+	
+							<p:outputLabel value="#{msgs['courses.tags']}" for="tags" />
+							<h:outputText value="#{course.tags}" id="tags" />
+	
 							<p:commandButton value="#{msgs['courses.enroll']}" styleClass="ui-priority-primary"
-											 action="#{loginBean.enrollToCourse(course.name)}"/>
+											 action="#{courseBean.enrollToCourse(course.name)}" ajax="true" update="growl" />
 						</h:panelGrid>
-					</h:panelGrid>
-					<p:separator />
-				</ui:repeat>
-			</p:panel>
+					</p:outputPanel>
+				</h:panelGrid>
+			</p:dataScroller>
 		</h:form>
 	</ui:define>
 </ui:composition>
