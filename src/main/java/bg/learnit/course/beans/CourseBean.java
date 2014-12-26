@@ -104,11 +104,9 @@ public class CourseBean {
         if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
             return new DefaultStreamedContent();
         } else {
-            String courseName = context.getExternalContext()
-                    .getRequestParameterMap().get("courseName");
+            String courseName = context.getExternalContext().getRequestParameterMap().get("courseName");
             Course course = courseService.findCourse(courseName);
-            ByteArrayInputStream pictureStream = new ByteArrayInputStream(
-                    course.getPicture());
+            ByteArrayInputStream pictureStream = new ByteArrayInputStream(course.getPicture());
             return new DefaultStreamedContent(pictureStream);
         }
     }

@@ -6,9 +6,9 @@
 	<h:panelGroup rendered="#{loginBean.loggedIn and loginBean.selectedCourse != null}">
 		<ul class="nav nav-pills nav-justified" role="tablist">
 			<li><p:link value="#{msgs['menu.news']}" outcome="/pages/home/underConstruction.jsf" /></li>
-			<li><p:link value="#{msgs['menu.materials']}" outcome="/pages/home/underConstruction.jsf" /></li>
+			<li><p:link value="#{msgs['menu.materials']}" outcome="/pages/home/course/materials" /></li>
 			<li><p:link value="#{msgs['menu.tasks']}" outcome="/pages/home/underConstruction.jsf" /></li>
-			<li><p:link value="#{msgs['menu.quizzes']}" outcome="/pages/home/course/quizzes.jsf" /></li>
+			<li><p:link value="#{msgs['menu.quizzes']}" outcome="/pages/home/course/quizzes" /></li>
 			<li><p:link value="#{msgs['menu.forums']}" outcome="/pages/home/underConstruction.jsf" /></li>
 			<li><p:link value="#{msgs['menu.participants']}" outcome="/pages/home/users.jsf" /></li>
 		</ul>
