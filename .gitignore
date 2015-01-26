@@ -1,8 +1,6 @@
 /.sonar/
 /.classpath
-
-/.metadata
-.project
+/.project
 /learnit-mail/.classpath
 /learnit-mail/.project
 /learnit-mail/.settings
