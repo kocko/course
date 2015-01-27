@@ -35,8 +35,8 @@ public class CourseService {
         return mongoTemplate.findAll(Course.class);
     }
     
-//    public void saveWeekMaterials(Course course, String title, byte[] slides, byte[] video) {
-//        course.addWeekMaterials(title, slides, video);
-//        mongoTemplate.save(course);
-//    }
+    public void saveWeekMaterials(Course course, String title, byte[] slides, byte[] video) {
+        course.addWeekMaterials(title, slides, video);
+        mongoTemplate.save(course);
+    }
 }

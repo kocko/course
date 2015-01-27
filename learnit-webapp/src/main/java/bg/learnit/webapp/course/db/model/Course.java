@@ -1,7 +1,9 @@
 package bg.learnit.webapp.course.db.model;
 
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Set;
+import java.util.TreeSet;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -20,7 +22,7 @@ public class Course {
 
     private byte[] picture;
     
-//    private Set<Material> materials;
+    private Set<Material> materials;
 
     public Course(String name, Date start, Date end, Set<String> tags, byte[] picture) {
         this.name = name;
@@ -70,19 +72,19 @@ public class Course {
         this.picture = picture;
     }
     
-//    public Set<Material> getMaterials() {
-//        return materials;
-//    }
-//    
-//    public void addWeekMaterials(String title, byte[] slides, byte[] video) {
-//        if (materials == null) {
-//            materials = new TreeSet<>(new Comparator<Material>() {
-//                @Override
-//                public int compare(Material first, Material second) {
-//                    return first.getDate().compareTo(second.getDate());
-//                }
-//            });
-//        }
-//        materials.add(new Material(title, slides, video, new Date()));
-//    }
+    public Set<Material> getMaterials() {
+        return materials;
+    }
+    
+    public void addWeekMaterials(String title, byte[] slides, byte[] video) {
+        if (materials == null) {
+            materials = new TreeSet<>(new Comparator<Material>() {
+                @Override
+                public int compare(Material first, Material second) {
+                    return first.getDate().compareTo(second.getDate());
+                }
+            });
+        }
+        materials.add(new Material(title, slides, video, new Date()));
+    }
 }

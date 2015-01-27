@@ -1,0 +1,26 @@
+<ui:composition xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/baseTemplate.xhtml">
+	<ui:define name="content">
+		<h:form>
+			<p:panel header="#{msgs['courses.materials.title']}">
+			    <h:panelGrid columns="2">
+			    	<p:outputLabel for="title" value="#{msgs['courses.materials.newWeek']}"/>
+			    	<p:inputText value="#{weekBean.title}" required="true" id="title" />
+			    	
+			    	<p:outputLabel for="slides" value="#{msgs['courses.materials.slides']}"/>
+			    	<h:inputFile id="slides" value="#{weekBean.slides}" />
+			    	
+			    	<p:outputLabel for="video" value="#{msgs['courses.materials.video']}"/>
+			    	<h:inputFile id="video" value="#{weekBean.video}" />
+			    	
+			    	<p:commandButton action="#{weekBean.save}" 
+			    					 value="#{msgs['courses.materials.save']}"
+			    					 styleClass="ui-priority-primary"/>
+			    </h:panelGrid>
+			</p:panel>   
+		</h:form>
+	</ui:define>
+</ui:composition>
