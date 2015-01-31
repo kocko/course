@@ -149,6 +149,12 @@
 
 		<dependency>
 			<groupId>bg.learnit</groupId>
+			<artifactId>learnit-annotations</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>bg.learnit</groupId>
 			<artifactId>learnit-mail</artifactId>
 			<version>${project.version}</version>
 		</dependency>
