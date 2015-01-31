@@ -12,6 +12,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import bg.learnit.webapp.course.db.model.Course;
+import bg.learnit.webapp.course.db.model.Course_;
 
 @Service("courseService")
 @Scope("prototype")
@@ -26,7 +27,7 @@ public class CourseService {
     }
 
     public Course findCourse(String name) {
-        Criteria criteria = Criteria.where("name").is(name);
+        Criteria criteria = Criteria.where(Course_.name).is(name);
         Query query = new Query(criteria);
         return mongoTemplate.findOne(query, Course.class);
     }
