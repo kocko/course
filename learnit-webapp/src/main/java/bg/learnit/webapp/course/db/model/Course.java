@@ -8,7 +8,10 @@ import java.util.TreeSet;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import bg.learnit.annotation.MetaModel;
+
 @Document(collection = "courses")
+@MetaModel
 public class Course {
 
     @Id
