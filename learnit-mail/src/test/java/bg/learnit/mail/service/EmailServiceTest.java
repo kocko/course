@@ -6,16 +6,11 @@ import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({ "classpath:META-INF/spring/spring-config.xml"})
 public class EmailServiceTest {
 
 	@Mock
@@ -50,4 +45,5 @@ public class EmailServiceTest {
 		
 		verify(mailSender).send(simpleMailMessage);
 	}
+	
 }
