@@ -10,6 +10,8 @@
 		
 	<context:component-scan base-package="bg.learnit" />
 	
+	<context:property-placeholder location="classpath:mail.properties" order="1" ignore-unresolvable="true" />
+	
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="${mail.smtp.host}" />
 		<property name="port" value="${mail.smtp.port}" />

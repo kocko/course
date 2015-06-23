@@ -1,6 +1,7 @@
 package bg.learnit.mail.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
@@ -10,23 +11,31 @@ import org.springframework.stereotype.Service;
 @Scope("singleton")
 public class EmailService {
 
-    @Autowired
-    private MailSender mailSender;
+	private MailSender mailSender;
 
-    public void setMailSender(MailSender mailSender) {
-        this.mailSender = mailSender;
-    }
+	private SimpleMailMessageFactory simpleMailMessageFactory;
 
-    /**
-     * This method will send compose and send the message
-     * */
-    public void sendMail(String to, String subject, String body) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(to);
-        message.setSubject(subject);
-        message.setText(body);
-        mailSender.send(message);
-    }
-    
+	@Autowired
+	public EmailService(@Qualifier("mailSender") MailSender mailSender) {
+		this.mailSender = mailSender;
+	}
+
+	@Autowired
+	public void setSimpleMailMessageFactory(SimpleMailMessageFactory simpleMailMessageFactory) {
+		this.simpleMailMessageFactory = simpleMailMessageFactory;
+	}
+
+	public void sendMail(String to, String subject, String body) {
+		SimpleMailMessage message = createMailMessage(to, subject, body);
+		mailSender.send(message);
+	}
+
+	private SimpleMailMessage createMailMessage(String to, String subject, String body) {
+		SimpleMailMessage message = simpleMailMessageFactory.procudePlainSimpleMailMessage();
+		message.setTo(to);
+		message.setSubject(subject);
+		message.setText(body);
+		return message;
+	}
+
 }
-
