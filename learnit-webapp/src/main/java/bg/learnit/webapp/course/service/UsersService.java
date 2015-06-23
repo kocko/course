@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import bg.learnit.webapp.course.db.model.User;
+import bg.learnit.webapp.course.db.model.User_;
 import bg.learnit.webapp.course.util.SecurityUtils;
 
 @Service("usersService")
@@ -26,7 +27,8 @@ public class UsersService {
 
     public User findUser(String email, String password) {
         String encryptedPassword = SecurityUtils.encryptToMD5(password);
-        Criteria criteria = Criteria.where("email").is(email).and("password").is(encryptedPassword);
+        Criteria criteria = Criteria.where(User_.email).is(email)
+                                    .and(User_.password).is(encryptedPassword);
         Query query = new Query(criteria);
         return mongoTemplate.findOne(query, User.class);
     }
