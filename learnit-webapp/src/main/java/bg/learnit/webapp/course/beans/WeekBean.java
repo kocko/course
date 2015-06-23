@@ -65,16 +65,26 @@ public class WeekBean {
     
     public String save() throws IOException {
         Course course = getCurrentCourse();
-        byte[] slidesAsBytes = null;
-        if (slides != null) {
-            slidesAsBytes = IOUtils.toByteArray(slides.getInputStream());
-        }
-        byte[] videoAsBytes = null;
-        if (video != null) {
-            videoAsBytes = IOUtils.toByteArray(video.getInputStream());
-        }
+        byte[] slidesAsBytes = extractSlidesAsAByteArray();
+        byte[] videoAsBytes = extractVideoAsAByteArray();
 
         courseService.saveWeekMaterials(course, title, slidesAsBytes, videoAsBytes);
         return "/pages/home/course/materials";
     }
+
+	private byte[] extractVideoAsAByteArray() throws IOException {
+		byte[] videoAsBytes = null;
+        if (video != null) {
+            videoAsBytes = IOUtils.toByteArray(video.getInputStream());
+        }
+		return videoAsBytes;
+	}
+
+	private byte[] extractSlidesAsAByteArray() throws IOException {
+		byte[] slidesAsBytes = null;
+        if (slides != null) {
+            slidesAsBytes = IOUtils.toByteArray(slides.getInputStream());
+        }
+		return slidesAsBytes;
+	}
 }

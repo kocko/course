@@ -5,7 +5,7 @@ import java.util.Date;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class Material {
+public class Material implements Comparable<Material> {
 
     private String title;
     
@@ -49,5 +49,10 @@ public class Material {
     public Date getDate() {
         return date;
     }
+
+	@Override
+	public int compareTo(Material other) {
+		return getDate().compareTo(other.getDate());
+	}
     
 }

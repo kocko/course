@@ -1,6 +1,5 @@
 package bg.learnit.webapp.course.db.model;
 
-import java.util.Comparator;
 import java.util.Date;
 import java.util.Set;
 import java.util.TreeSet;
@@ -78,12 +77,7 @@ public class Course {
     
     public void addWeekMaterials(String title, byte[] slides, byte[] video) {
         if (materials == null) {
-            materials = new TreeSet<>(new Comparator<Material>() {
-                @Override
-                public int compare(Material first, Material second) {
-                    return first.getDate().compareTo(second.getDate());
-                }
-            });
+            materials = new TreeSet<>();
         }
         materials.add(new Material(title, slides, video, new Date()));
     }

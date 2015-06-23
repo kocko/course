@@ -14,12 +14,6 @@ import bg.learnit.webapp.course.db.model.Course;
 import bg.learnit.webapp.course.db.model.User;
 import bg.learnit.webapp.course.service.UsersService;
 
-/**
- * 
- * @author kocko
- *
- */
-
 @SessionScoped
 @ManagedBean(name = "loginBean")
 public class LoginBean {

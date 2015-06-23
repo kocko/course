@@ -12,8 +12,6 @@ import bg.learnit.webapp.course.util.SecurityUtils;
  * A request-scoped managed bean that holds the logic for registering a new
  * user.
  * 
- * @author kocko
- * 
  */
 @RequestScoped
 @ManagedBean(name = "registerBean")
